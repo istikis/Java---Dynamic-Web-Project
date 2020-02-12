@@ -4,7 +4,7 @@
 
 <section  class="container col col-sm-6 mt-4 justify-content-center" id="servicios">
 <h3 class="mb-4">Tabla Servicios</h3>
-	<%-- <table
+	 <table
 		class="table table-striped table-bordered table-hover table-sm table-responsive">
 		<thead>
 			<tr>
@@ -21,13 +21,13 @@
 					<td>${servicio.nombre}</td>
 					<td>${servicio.precio}</td>
 					<td><a class="btn btn-warning" href="admin/servicios?id=${servicio.id}&op=modificar">Modificar</a> <a
-						class="btn btn-danger" href="admin/borrar?id=${servicio.id}">Borrar</a></td>
+						class="btn btn-danger" href="admin/borrarservicio?id=${servicio.id}">Borrar</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>
-	</table> --%>
+	</table> 
 
-	<a class="btn btn-primary" href="admin/servicios?op=agregar">Añadir</a>
+	<a class="btn btn-primary" href="admin/servicios?op=agregar">Añadir Servicio</a>
 
 </section>
 

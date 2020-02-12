@@ -11,16 +11,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.istikis.masajes.repositorios.AccesoDatosException;
 import com.istikis.masajes.modelo.Servicio;
 
 public class ServicioMySQL implements Dao<Servicio> {
 	
 	private static final String SQL_SELECT = "SELECT * FROM servicios";
-	//private static final String SQL_SELECT_BY_ID = "SELECT * FROM servicios WHERE id=?";
+	private static final String SQL_SELECT_BY_ID = "SELECT * FROM servicios WHERE id=?";
 
-	//private static final String SQL_INSERT = "INSERT INTO servicios (id, nombre, precio) VALUES (?,?,?)";
-	//private static final String SQL_UPDATE = "UPDATE servicios SET nombre=?, url=? WHERE id=?";
-	//private static final String SQL_DELETE = "DELETE FROM servicios WHERE id=?";
+	private static final String SQL_INSERT = "INSERT INTO servicios (id, nombre, precio) VALUES (?,?,?)";
+	private static final String SQL_UPDATE = "UPDATE servicios SET nombre=?, precio=? WHERE id=?";
+	private static final String SQL_DELETE = "DELETE FROM servicios WHERE idservicios=?";
 	
 	private static String url, usuario, password;
 	
@@ -94,28 +95,80 @@ public class ServicioMySQL implements Dao<Servicio> {
 
 	@Override
 	public Servicio obtenerPorId(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		try (Connection con = getConexion()) {
+			try(PreparedStatement ps = con.prepareStatement(SQL_SELECT_BY_ID)) {
+				
+				ps.setLong(1, id);
+				
+				try(ResultSet rs = ps.executeQuery()){
+									
+					if(rs.next()) {
+						return new Servicio(rs.getLong("id"), rs.getString("nombre"), rs.getBigDecimal("precio"));
+					} else {
+						return null;
+					}
+				}
+			}
+		} catch (SQLException e) {
+			throw new AccesoDatosException("Error al obtener el video id: " + id, e);
+		}
 	}
 
 	@Override
-	public void agregar(Servicio objeto) {
-		// TODO Auto-generated method stub
-		
+	public void agregar(Servicio servicio) {
+		try (Connection con = getConexion()) {
+			try(PreparedStatement ps = con.prepareStatement(SQL_INSERT)) {
+				ps.setString(1, servicio.getNombre());
+				ps.setBigDecimal(2, servicio.getPrecio());
+				
+				int numeroRegistrosModificados = ps.executeUpdate();
+				
+				if(numeroRegistrosModificados != 1) {
+					throw new AccesoDatosException("Se ha hecho más o menos de una insert");
+				}
+			}
+		} catch (SQLException e) {
+			throw new AccesoDatosException("Error al insertar el servicio", e);
+		}
 	}
 
 	@Override
-	public void modificar(Servicio objeto) {
-		// TODO Auto-generated method stub
-		
+	public void modificar(Servicio servicio) {
+		try (Connection con = getConexion()) {
+			try(PreparedStatement ps = con.prepareStatement(SQL_UPDATE)) {
+				
+				ps.setString(1, servicio.getNombre());
+				ps.setBigDecimal(2, servicio.getPrecio());
+				ps.setLong(3, servicio.getId());
+				
+				int numeroRegistrosModificados = ps.executeUpdate();
+				
+				if(numeroRegistrosModificados != 1) {
+					throw new AccesoDatosException("Se ha hecho más o menos de una update");
+				}
+			}
+		} catch (SQLException e) {
+			throw new AccesoDatosException("Error al modificar el servicio", e);
+		}
 	}
 
 	@Override
 	public void borrar(Long id) {
-		// TODO Auto-generated method stub
-		
+		try (Connection con = getConexion()) {
+			try(PreparedStatement ps = con.prepareStatement(SQL_DELETE)) {
+				ps.setLong(1, id);
+				
+				int numeroRegistrosModificados = ps.executeUpdate();
+				
+				if(numeroRegistrosModificados != 1) {
+					throw new AccesoDatosException("Se ha hecho más o menos de una delete");
+				}
+			}
+		} catch (SQLException e) {
+			throw new AccesoDatosException("Error al borrar el servicio", e);
+		}
 	}
-
+	
 }
 
 

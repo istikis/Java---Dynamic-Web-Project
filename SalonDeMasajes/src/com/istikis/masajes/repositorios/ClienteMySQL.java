@@ -163,6 +163,7 @@ public class ClienteMySQL implements Dao<Cliente>{
 	public void borrar(Long id) {
 		try (Connection con = getConexion()) {
 			try(PreparedStatement ps = con.prepareStatement(SQL_DELETE)) {
+				
 				ps.setLong(1, id);
 				
 				int numeroRegistrosModificados = ps.executeUpdate();

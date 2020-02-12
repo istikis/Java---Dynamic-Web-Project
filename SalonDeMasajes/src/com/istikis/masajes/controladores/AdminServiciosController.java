@@ -14,11 +14,10 @@ public class AdminServiciosController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setAttribute("servicios", Globales.daoServicio.obtenerTodos());
-		request.getRequestDispatcher("/WEB-INF/vistas/admin/servicio.jsp");
+		request.getRequestDispatcher("/WEB-INF/vistas/admin/servicio.jsp").forward(request, response);;
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
