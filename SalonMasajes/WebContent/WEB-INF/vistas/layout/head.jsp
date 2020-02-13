@@ -62,6 +62,7 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item"><a class="nav-link" href="vistas/index.jsp">Inicio</a></li>
+					<li class="nav-item"><a class="nav-link" href="vistas/index.jsp">Panel de Control</a></li>
 					<li class="nav-item"><a class="nav-link" href="admin/index">Sesiones</a></li>
 					<li class="nav-item"><a class="nav-link" href="admin/clientes">Clientes</a></li>
 					<li class="nav-item"><a class="nav-link" href="admin/servicios">Servicios</a></li>

@@ -12,7 +12,7 @@
 				<th>Id</th>
 				<th>Nombre</th>
 				<th>Precio</th>
-				<th>Opciones</th>
+				<th class="pr-5">Opciones</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -22,15 +22,15 @@
 					<td>${servicio.nombre}</td>
 					<td> <fmt:formatNumber value = "${servicio.precio}" type = "currency"/></td>
 					<td class="text-center">
-						<a href="admin/add_servicio?id=${servicio.id}&op=modificar"><i class="far fa-edit"></i></a>
-						<a href="admin/borrarservicio?id=${servicio.id}"><i class="far fa-trash-alt"></i></a>
+						<a class="btn btn-warning btn-sm" href="admin/add_servicio?id=${servicio.id}&op=modificar"><i class="far fa-edit"></i></a>
+						<a class="btn btn-danger btn-sm" href="admin/borrarservicio?id=${servicio.id}"><i class="far fa-trash-alt"></i></a>
 					</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table> 
 
-	<a class="btn btn-primary" href="admin/add_servicio?op=agregar">Nuevo Servicio</a>
+	<a class="btn btn-primary" href="admin/add_servicio?op=agregar"><span><i class="fas fa-plus"></i></span> Nuevo Servicio</a>
 
 </section>
 

@@ -17,7 +17,7 @@
 				<th>DNI</th>
 				<th>Reseña</th>
 				<th>Calificación</th>
-				<th>Opciones</th>
+				<th class="pr-5">Opciones</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -34,17 +34,19 @@
 					<td>saczcsac</td>
 					<td>Reseña cliente</td>
 					<td>saczcsac</td>
-					<td><a class="btn btn-warning" href="admin/video?id=${cliente.idCliente}&op=modificar">Modificar</a> <a
-						class="btn btn-danger" href="admin/borrar?id=${cliente.idCliente}">Borrar</a></td>
+					<td>
+						<a class="btn btn-warning btn-sm" href="admin/video?id=${cliente.idCliente}&op=modificar"><i class="far fa-edit"></i></a>
+						<a class="btn btn-danger btn-sm" href="admin/borrar?id=${cliente.idCliente}"><i class="far fa-trash-alt"></i></a>
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
 
 	<!-- <a class="btn btn-primary" href="admin/clientes?op=agregar">Añadir Sesión</a> -->
-	<a class="btn btn-primary" href="admin/clientes?op=agregar">Añadir Cliente</a>
-	<a class="btn btn-primary" href="admin/clientes?op=agregar">Añadir Trabajador</a>
-	<a class="btn btn-primary" href="admin/clientes?op=agregar">Añadir Servicio</a>
+	<a class="btn btn-primary" href="admin/clientes?op=agregar"><span><i class="fas fa-plus"></i></span> Añadir Cliente</a>
+	<a class="btn btn-primary" href="admin/clientes?op=agregar"><span><i class="fas fa-plus"></i></span> Añadir Trabajador</a>
+	<a class="btn btn-primary" href="admin/clientes?op=agregar"><span><i class="fas fa-plus"></i></span> Añadir Servicio</a>
 
 </section>
 

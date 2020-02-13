@@ -12,7 +12,7 @@
 				<th>Nombre</th>
 				<th>Apellidos</th>
 				<th>DNI</th>
-				<th>Opciones</th>
+				<th class="pr-5">Opciones</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -22,14 +22,16 @@
 					<td>${trabajador.nombre}</td>
 					<td>${trabajador.apellidos}</td>
 					<td>${trabajador.dni}</td>
-					<td><a class="btn btn-warning" href="admin/add_trabajador?id=${trabajador.id}&op=modificar">Modificar</a> <a
-						class="btn btn-danger" href="admin/borrartrabajador?id=${trabajador.id}">Borrar</a></td>
+					<td class="d-block">
+						<a class="btn btn-warning btn-sm" href="admin/add_trabajador?id=${trabajador.id}&op=modificar"><span><i class="far fa-edit"></i></span></a>
+						<a class="btn btn-danger btn-sm" href="admin/borrartrabajador?id=${trabajador.id}"><span><i class="far fa-trash-alt"></i></span></a>
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
 
-	<a class="btn btn-primary" href="admin/add_trabajador?op=agregar">Añadir</a>
+	<a class="btn btn-primary" href="admin/add_trabajador?op=agregar"><span><i class="fas fa-plus"></i></span> Añadir</a>
 
 </section>
 

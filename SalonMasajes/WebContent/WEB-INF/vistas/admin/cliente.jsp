@@ -14,7 +14,7 @@
 				<th>Nombre</th>
 				<th>Apellidos</th>
 				<th>DNI</th>
-				<th>Opciones</th>
+				<th class="pr-5">Opciones</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -25,15 +25,15 @@
 					<td>${cliente.apellidos}</td>
 					<td>${cliente.dni}</td>
 					<td>
-						<a class="btn btn-warning" href="admin/add_cliente?id=${cliente.idCliente}&op=modificar">Modificar</a> 
-						<a class="btn btn-danger" href="admin/borrarcliente?id=${cliente.idCliente}">Borrar</a>
+						<a class="btn btn-warning btn-sm" href="admin/add_cliente?id=${cliente.idCliente}&op=modificar"><i class="far fa-edit"></i></a> 
+						<a class="btn btn-danger btn-sm" href="admin/borrarcliente?id=${cliente.idCliente}"><i class="far fa-trash-alt"></i></a>
 					</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
 
-	<a class="btn btn-primary" href="admin/add_cliente?op=agregar">Añadir</a>
+	<a class="btn btn-primary" href="admin/add_cliente?op=agregar"><span><i class="fas fa-plus"></i></span> Añadir</a>
 
 </section>
 
