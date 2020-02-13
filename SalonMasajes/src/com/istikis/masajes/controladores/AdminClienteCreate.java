@@ -23,7 +23,7 @@ public class AdminClienteCreate extends HttpServlet {
 		String op = request.getParameter("op");
 		
 		if (id != null) {
-			Cliente cliente = Globales.daoCliente.obtenerPorId(Long.parseLong(id));
+			Cliente cliente = Globales.daoCliente.obtenerPorId(Integer.parseInt(id));
 			request.setAttribute("cliente", cliente);
 		}
 		
@@ -49,7 +49,7 @@ public class AdminClienteCreate extends HttpServlet {
 			Globales.daoCliente.agregar(cliente);
 			break;
 		case "modificar":
-			cliente = new Cliente(Long.parseLong(id), nombre, apellidos, dni);
+			cliente = new Cliente(Integer.parseInt(id), nombre, apellidos, dni);
 			Globales.daoCliente.modificar(cliente);
 			break;
 

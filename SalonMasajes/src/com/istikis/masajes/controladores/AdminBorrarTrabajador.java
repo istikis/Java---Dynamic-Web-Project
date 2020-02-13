@@ -16,7 +16,7 @@ public class AdminBorrarTrabajador extends HttpServlet {
 		
 		String id = request.getParameter("id");
 
-		Globales.daoTrabajador.borrar(Long.parseLong(id));
+		Globales.daoTrabajador.borrar(Integer.parseInt(id));
 
 		response.sendRedirect(request.getContextPath() + "/admin/trabajadores");
 	}

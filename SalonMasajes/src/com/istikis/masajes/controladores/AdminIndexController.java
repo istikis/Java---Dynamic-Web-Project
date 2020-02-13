@@ -17,7 +17,7 @@ public class AdminIndexController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("sesiones", Globales.daoActuaciones.obtenerTodos());
+		request.setAttribute("sesiones", Globales.daoSesion.obtenerTodos());
 		
 		//Actuaciones sesiones = new Actuaciones(new Cliente(), new Trabajador(), new Servicio(), fecha, resena, calificacion)
 	

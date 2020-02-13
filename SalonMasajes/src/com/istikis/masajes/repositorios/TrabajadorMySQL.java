@@ -14,6 +14,7 @@ import java.util.Properties;
 import com.istikis.masajes.repositorios.AccesoDatosException;
 import com.istikis.masajes.modelo.Trabajador;
 
+
 public class TrabajadorMySQL implements Dao<Trabajador> {
 
 	private static final String SQL_SELECT = "SELECT * FROM trabajadores";
@@ -79,11 +80,10 @@ public class TrabajadorMySQL implements Dao<Trabajador> {
 					
 					while(rs.next()) {
 						trabajadores.add(new Trabajador(
-								rs.getLong("idtrabajadores"), 
-								rs.getString("nombre"), 
-								rs.getString("apellidos"),
-								rs.getString("dni")
-								));
+								rs.getInt("idtrabajadores"), 
+								rs.getString("nombre"),
+								rs.getString("apellidos"), 
+								rs.getString("dni")));
 					}
 					
 					return trabajadores;
@@ -94,19 +94,19 @@ public class TrabajadorMySQL implements Dao<Trabajador> {
 		}
 	}
 	@Override
-	public Trabajador obtenerPorId(Long id) {
+	public Trabajador obtenerPorId(Integer id) {
 		try (Connection con = getConexion()) {
 			try(PreparedStatement ps = con.prepareStatement(SQL_SELECT_BY_ID)) {
 				
-				ps.setLong(1, id);
+				ps.setInt(1, id);
 				
 				try(ResultSet rs = ps.executeQuery()){
 									
 					if(rs.next()) {
 						return new Trabajador(
-								rs.getLong("idtrabajadores"), 
+								rs.getInt("idtrabajadores"), 
 								rs.getString("nombre"), 
-								rs.getString("apellidos"),
+								rs.getString("apellidos"), 
 								rs.getString("dni"));
 					} else {
 						return null;
@@ -144,7 +144,7 @@ public class TrabajadorMySQL implements Dao<Trabajador> {
 				ps.setString(1, trabajador.getNombre());
 				ps.setString(2, trabajador.getApellidos());
 				ps.setString(3, trabajador.getDni());
-				ps.setLong(4, trabajador.getId());
+				ps.setInt(4, trabajador.getId());
 				
 				int numeroRegistrosModificados = ps.executeUpdate();
 				
@@ -157,11 +157,11 @@ public class TrabajadorMySQL implements Dao<Trabajador> {
 		}
 	}
 	@Override
-	public void borrar(Long id) {
+	public void borrar(Integer id) {
 		try (Connection con = getConexion()) {
 			try(PreparedStatement ps = con.prepareStatement(SQL_DELETE)) {
 				
-				ps.setLong(1, id);
+				ps.setInt(1, id);
 				
 				int numeroRegistrosModificados = ps.executeUpdate();
 				
@@ -173,4 +173,6 @@ public class TrabajadorMySQL implements Dao<Trabajador> {
 			throw new AccesoDatosException("Error al borrar el Trabajador", e);
 		}
 	}
+
+
 }

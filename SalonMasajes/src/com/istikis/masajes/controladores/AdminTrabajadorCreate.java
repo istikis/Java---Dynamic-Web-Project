@@ -20,7 +20,7 @@ public class AdminTrabajadorCreate extends HttpServlet {
 		String op = request.getParameter("op");
 		
 		if (id != null) {
-			Trabajador trabajador = Globales.daoTrabajador.obtenerPorId(Long.parseLong(id));
+			Trabajador trabajador = Globales.daoTrabajador.obtenerPorId(Integer.parseInt(id));
 			request.setAttribute("trabajador", trabajador);
 		}
 		
@@ -46,7 +46,7 @@ public class AdminTrabajadorCreate extends HttpServlet {
 			Globales.daoTrabajador.agregar(trabajador);
 			break;
 		case "modificar":
-			trabajador = new Trabajador(Long.parseLong(id),nombre, apellidos, dni);
+			trabajador = new Trabajador(Integer.parseInt(id),nombre, apellidos, dni);
 			Globales.daoTrabajador.modificar(trabajador);
 			break;
 

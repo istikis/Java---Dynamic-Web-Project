@@ -2,7 +2,6 @@ package com.istikis.masajes.controladores;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.istikis.masajes.modelo.Servicio;
-import com.istikis.masajes.modelo.Trabajador;
 
 
 @WebServlet("/admin/add_servicio")
@@ -25,7 +23,7 @@ public class AdminServicioCreate extends HttpServlet {
 		String op = request.getParameter("op");
 		
 		if (id != null) {
-			Servicio servicio = Globales.daoServicio.obtenerPorId(Long.parseLong(id));
+			Servicio servicio = Globales.daoServicio.obtenerPorId(Integer.parseInt(id));
 			request.setAttribute("servicio", servicio);
 		}
 		
@@ -51,7 +49,7 @@ public class AdminServicioCreate extends HttpServlet {
 			Globales.daoServicio.agregar(servicio);
 			break;
 		case "modificar":
-			servicio = new Servicio(Long.parseLong(id), nombre, precio);
+			servicio = new Servicio(Integer.parseInt(id), nombre, precio);
 			Globales.daoServicio.modificar(servicio);
 			break;
 

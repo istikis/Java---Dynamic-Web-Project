@@ -77,9 +77,9 @@ public class ClienteMySQL implements Dao<Cliente>{
 					
 					while(rs.next()) {
 						clientes.add(new Cliente(
-								rs.getLong("idclientes"), 
+								rs.getInt("idclientes"),
 								rs.getString("nombre"), 
-								rs.getString("apellidos"),
+								rs.getString("apellidos"), 
 								rs.getString("dni")
 								));
 					}
@@ -94,7 +94,7 @@ public class ClienteMySQL implements Dao<Cliente>{
 	
 
 	@Override
-	public Cliente obtenerPorId(Long id) {
+	public Cliente obtenerPorId(Integer id) {
 		try (Connection con = getConexion()) {
 			try(PreparedStatement ps = con.prepareStatement(SQL_SELECT_BY_ID)) {
 				ps.setLong(1, id);
@@ -103,9 +103,9 @@ public class ClienteMySQL implements Dao<Cliente>{
 									
 					if(rs.next()) {
 						return new Cliente(
-								rs.getLong("idclientes"), 
+								rs.getInt("idclientes"), 
 								rs.getString("nombre"), 
-								rs.getString("apellidos"),
+								rs.getString("apellidos"), 
 								rs.getString("dni")
 								);
 					} else {
@@ -146,7 +146,7 @@ public class ClienteMySQL implements Dao<Cliente>{
 				ps.setString(1, cliente.getNombre());
 				ps.setString(2, cliente.getApellidos());
 				ps.setString(3, cliente.getDni());
-				ps.setLong(4, cliente.getIdCliente());
+				ps.setLong(4, cliente.getId());
 				
 				int numeroRegistrosModificados = ps.executeUpdate();
 				
@@ -161,7 +161,7 @@ public class ClienteMySQL implements Dao<Cliente>{
 	}
 
 	@Override
-	public void borrar(Long id) {
+	public void borrar(Integer id) {
 		try (Connection con = getConexion()) {
 			try(PreparedStatement ps = con.prepareStatement(SQL_DELETE)) {
 				

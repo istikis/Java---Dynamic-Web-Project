@@ -3,10 +3,11 @@ package com.istikis.masajes.repositorios;
 public interface Dao<T> {
 	
 	Iterable<T> obtenerTodos();
-	T obtenerPorId(Long id);
+	T obtenerPorId(Integer id);
 	
 	void agregar(T objeto);
 	void modificar(T objeto);
-	void borrar(Long id);
+	void borrar(Integer id);
+
 
 }

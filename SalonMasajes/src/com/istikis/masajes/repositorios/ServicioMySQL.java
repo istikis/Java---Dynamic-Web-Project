@@ -79,10 +79,9 @@ public class ServicioMySQL implements Dao<Servicio> {
 					
 					while(rs.next()) {
 						servicios.add(new Servicio(
-								rs.getLong("idservicios"), 
+								rs.getInt("idservicios"), 
 								rs.getString("nombre"), 
-								rs.getBigDecimal("precio")
-								));
+								rs.getBigDecimal("precio")));
 					}
 					
 					return servicios;
@@ -94,7 +93,7 @@ public class ServicioMySQL implements Dao<Servicio> {
 	}
 
 	@Override
-	public Servicio obtenerPorId(Long id) {
+	public Servicio obtenerPorId(Integer id) {
 		try (Connection con = getConexion()) {
 			try(PreparedStatement ps = con.prepareStatement(SQL_SELECT_BY_ID)) {
 				
@@ -104,10 +103,9 @@ public class ServicioMySQL implements Dao<Servicio> {
 									
 					if(rs.next()) {
 						return new Servicio(
-								rs.getLong("idservicios"), 
+								rs.getInt("idservicios"), 
 								rs.getString("nombre"), 
-								rs.getBigDecimal("precio")
-								);
+								rs.getBigDecimal("precio"));
 					} else {
 						return null;
 					}
@@ -158,7 +156,7 @@ public class ServicioMySQL implements Dao<Servicio> {
 	}
 
 	@Override
-	public void borrar(Long id) {
+	public void borrar(Integer id) {
 		try (Connection con = getConexion()) {
 			try(PreparedStatement ps = con.prepareStatement(SQL_DELETE)) {
 				ps.setLong(1, id);

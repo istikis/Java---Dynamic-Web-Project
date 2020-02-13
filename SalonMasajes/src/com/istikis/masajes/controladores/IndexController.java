@@ -13,7 +13,9 @@ public class IndexController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("clientes", Globales.daoCliente.obtenerTodos());
-		request.setAttribute("actuaciones", Globales.daoActuaciones.obtenerTodos());
+		
+		// TODO Pendiente de cambiar "actuaciones· por "sesiones" en las JSPs
+		request.setAttribute("actuaciones", Globales.daoSesion.obtenerTodos());
 		request.getRequestDispatcher("/WEB-INF/vistas/index.jsp").forward(request, response);
 	}
 

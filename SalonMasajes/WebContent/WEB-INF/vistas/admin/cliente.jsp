@@ -20,13 +20,13 @@
 		<tbody>
 			<c:forEach items="${clientes}" var="cliente">
 				<tr>
-					<th>${cliente.idCliente}</th>
+					<th>${cliente.id}</th>
 					<td>${cliente.nombre}</td>
 					<td>${cliente.apellidos}</td>
 					<td>${cliente.dni}</td>
 					<td>
-						<a class="btn btn-warning btn-sm" href="admin/add_cliente?id=${cliente.idCliente}&op=modificar"><i class="far fa-edit"></i></a> 
-						<a class="btn btn-danger btn-sm" href="admin/borrarcliente?id=${cliente.idCliente}"><i class="far fa-trash-alt"></i></a>
+						<a class="btn btn-warning btn-sm" href="admin/add_cliente?id=${cliente.id}&op=modificar"><i class="far fa-edit"></i></a> 
+						<a class="btn btn-danger btn-sm" href="admin/borrarcliente?id=${cliente.id}"><i class="far fa-trash-alt"></i></a>
 					</td>
 				</tr>
 			</c:forEach>

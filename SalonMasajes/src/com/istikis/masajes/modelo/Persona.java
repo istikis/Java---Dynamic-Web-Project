@@ -1,25 +1,15 @@
 package com.istikis.masajes.modelo;
 
-import java.math.BigDecimal;
-
-public class Servicio {
+public class Persona {
 	private Integer id;
-	private String nombre;
-	private BigDecimal precio;
+	private String nombre, apellidos;
+	private String dni;
 	
-	public Servicio(Integer id, String nombre, BigDecimal precio) {
-		
+	public Persona(Integer id, String nombre, String apellidos, String dni) {
 		setId(id);
 		setNombre(nombre);
-		setPrecio(precio);
-	}
-	
-	public Servicio(String nombre, BigDecimal precio) {
-		this(null,nombre, precio);
-	}
-	
-	public Servicio() {
-		// Auto-generated constructor stub
+		setApellidos(apellidos);
+		setDni(dni);
 	}
 	
 	public Integer getId() {
@@ -34,19 +24,26 @@ public class Servicio {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public BigDecimal getPrecio() {
-		return precio;
+	public String getApellidos() {
+		return apellidos;
 	}
-	public void setPrecio(BigDecimal precio) {
-		this.precio = precio;
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
+	}
+	public String getDni() {
+		return dni;
+	}
+	public void setDni(String dni) {
+		this.dni = dni;
 	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((apellidos == null) ? 0 : apellidos.hashCode());
+		result = prime * result + ((dni == null) ? 0 : dni.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
-		result = prime * result + ((precio == null) ? 0 : precio.hashCode());
 		return result;
 	}
 	@Override
@@ -57,7 +54,17 @@ public class Servicio {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Servicio other = (Servicio) obj;
+		Persona other = (Persona) obj;
+		if (apellidos == null) {
+			if (other.apellidos != null)
+				return false;
+		} else if (!apellidos.equals(other.apellidos))
+			return false;
+		if (dni == null) {
+			if (other.dni != null)
+				return false;
+		} else if (!dni.equals(other.dni))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -68,18 +75,10 @@ public class Servicio {
 				return false;
 		} else if (!nombre.equals(other.nombre))
 			return false;
-		if (precio == null) {
-			if (other.precio != null)
-				return false;
-		} else if (!precio.equals(other.precio))
-			return false;
 		return true;
 	}
 	@Override
 	public String toString() {
-		return "Servicio [id=" + id + ", nombre=" + nombre + ", precio=" + precio + "]";
+		return "Persona [id=" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + ", dni=" + dni + "]";
 	}
-	
-	
-	
 }
