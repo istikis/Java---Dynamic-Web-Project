@@ -11,7 +11,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import com.istikis.masajes.repositorios.AccesoDatosException;
 import com.istikis.masajes.modelo.Servicio;
 
 public class ServicioMySQL implements Dao<Servicio> {

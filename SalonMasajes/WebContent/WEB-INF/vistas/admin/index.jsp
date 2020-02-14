@@ -5,11 +5,11 @@
 <section 
 	class="container col col-sm-10 mt-4 justify-content-center" 
 	id="sesiones">
-	<h3 class="mb-4">Registro de Sesiones</h3>
 	<h3>Sesiones</h3>
+	<!-- <h3 class="mb-4">Registro de Sesiones</h3> -->
 		<table
 			class="table table-striped table-bordered table-hover table-sm table-responsive-xl">
-			<thead class="thead-dark">
+			<thead class="head-tabla">
 				<tr>
 					<th>Id</th>
 					<th>Cliente</th>
@@ -29,15 +29,20 @@
 						<td>${s.trabajador.nombre}${s.trabajador.apellidos}</td>
 						<td>${s.servicio.nombre}</td>
 						<td><fmt:formatDate value="${s.fecha}" pattern="dd-MM-yyyy HH:mm" /></td>
-						<td><a href="javascript:alert('${s.resena}')"><%-- ${fn:substring(s.resena, 0, 20)}... --%></a></td>
+						<td>
+							<a href="javascript:alert('${s.resena}')">
+								${fn:substring(s.resena, 0, 20)}...
+								</a>
+						</td>
 						<td>${s.calificacion}</td>
-						<td><a href="sesion?id=${s.id}"
-							class="btn btn-primary btn-sm">Editar</a> <a href="#"
-							class="btn btn-danger btn-sm">Borrar</a></td>
+						<td class="text-center">
+							<a class="btn-add btn btn-primary btn-sm" href="sesion"><i class="fas fa-plus"></i></a>
+							<a class="btn-edit btn btn-warning btn-sm" href="sesion?id=${s.id}"><i class="far fa-edit"></i></a> 
+							<a class="btn-del btn btn-danger btn-sm" href="#"><i class="far fa-trash-alt"></i></a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
-			<tfoot class="thead-dark">
+			<tfoot class="foot-tabla">
 				<tr>
 					<th>Id</th>
 					<th>Cliente</th>
@@ -46,16 +51,17 @@
 					<th>Fecha</th>
 					<th>Reseña</th>
 					<th>Calificación</th>
-					<th><a href="sesion" class="btn btn-primary btn-sm">Añadir</a>
+					<th class="text-center">
+						<a href="sesion" class="btn-add btn btn-primary btn-sm"><span> <i class="fas fa-plus"></i> </span> Añadir</a>
 					</th>
 				</tr>
 			</tfoot>
 		</table>
 
 	<!-- <a class="btn btn-primary" href="admin/clientes?op=agregar">Añadir Sesión</a> -->
-	<a class="btn btn-primary" href="admin/clientes?op=agregar"><span><i class="fas fa-plus"></i></span> Añadir Cliente</a>
-	<a class="btn btn-primary" href="admin/clientes?op=agregar"><span><i class="fas fa-plus"></i></span> Añadir Trabajador</a>
-	<a class="btn btn-primary" href="admin/clientes?op=agregar"><span><i class="fas fa-plus"></i></span> Añadir Servicio</a>
+	<a class="btn-add btn btn-primary btn-sm" href="admin/clientes?op=agregar"><i class="fas fa-plus"></i> Añadir Cliente</a>
+	<a class="btn-add btn btn-primary btn-sm" href="admin/clientes?op=agregar"><i class="fas fa-plus"></i> Añadir Trabajador</a>
+	<a class="btn-add btn btn-primary btn-sm" href="admin/clientes?op=agregar"><i class="fas fa-plus"></i> Añadir Servicio</a>
 
 </section>
 

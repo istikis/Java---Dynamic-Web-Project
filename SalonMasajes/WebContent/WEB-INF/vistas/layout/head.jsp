@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -61,8 +61,8 @@
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item"><a class="nav-link" href="vistas/index.jsp">Inicio</a></li>
-					<li class="nav-item"><a class="nav-link" href="vistas/index.jsp">Panel de Control</a></li>
+					<li class="nav-item ml-5"><a class="nav-link" href="vistas/index.jsp"><i class="fas fa-home"></i> Inicio</a></li>
+					<li class="nav-item"><a class="nav-link" href="vistas/index.jsp"><i class="fas fa-tools"></i> Panel de Administración</a></li>
 					<li class="nav-item"><a class="nav-link" href="admin/index">Sesiones</a></li>
 					<li class="nav-item"><a class="nav-link" href="admin/clientes">Clientes</a></li>
 					<li class="nav-item"><a class="nav-link" href="admin/servicios">Servicios</a></li>
@@ -104,4 +104,4 @@
 				session.removeAttribute("alertanivel");
 		%>
 	</c:if>
-	<main class="container-fluid">
+	<main class="container-fluid mb-5 pb-5">

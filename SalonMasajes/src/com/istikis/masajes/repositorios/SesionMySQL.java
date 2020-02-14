@@ -88,18 +88,35 @@ public class SesionMySQL implements Dao<Sesion> {
 
 					while (rs.next()) {
 						//Partes
-						cliente = new Cliente(rs.getInt("clientes_idclientes"), rs.getString("c.nombre"),
-								rs.getString("c.apellidos"), rs.getString("c.dni"));
+						cliente = new Cliente(
+								rs.getInt("clientes_idclientes"), 
+								rs.getString("c.nombre"),
+								rs.getString("c.apellidos"), 
+								rs.getString("c.dni")
+								);
 
-						trabajador = new Trabajador(rs.getInt("trabajadores_idtrabajadores"), rs.getString("t.nombre"),
-								rs.getString("t.apellidos"), rs.getString("t.dni"));
+						trabajador = new Trabajador(
+								rs.getInt("trabajadores_idtrabajadores"), 
+								rs.getString("t.nombre"),
+								rs.getString("t.apellidos"), 
+								rs.getString("t.dni")
+								);
 
-						servicio = new Servicio(rs.getInt("servicios_idservicios"), rs.getString("s.nombre"),
-								rs.getBigDecimal("s.precio"));
+						servicio = new Servicio(
+								rs.getInt("servicios_idservicios"), 
+								rs.getString("s.nombre"),
+								rs.getBigDecimal("s.precio")
+								);
 
 						//Completo
-						sesion = new Sesion(rs.getInt("id"), cliente, trabajador, servicio,
-								rs.getTimestamp("fecha"), rs.getString("resena"), rs.getString("calificacion"));
+						sesion = new Sesion(
+								rs.getInt("idservicios"), 
+								cliente, 
+								trabajador, 
+								servicio,
+								rs.getTimestamp("fecha"), 
+								rs.getString("resena"), 
+								rs.getString("calificacion"));
 						
 						//Agregar
 						sesiones.add(sesion);
@@ -132,15 +149,36 @@ public class SesionMySQL implements Dao<Sesion> {
 
 					if (rs.next()) {
 						//Partes
-						cliente = new Cliente(rs.getInt("clientes_idclientes"), null, null, null);
+						cliente = new Cliente(
+								rs.getInt("clientes_idclientes"), 
+								null, 
+								null, 
+								null
+								);
 
-						trabajador = new Trabajador(rs.getInt("trabajadores_idtrabajadores"), null, null, null);
+						trabajador = new Trabajador(
+								rs.getInt("trabajadores_idtrabajadores"), 
+								null, 
+								null, 
+								null
+								);
 
-						servicio = new Servicio(rs.getInt("servicios_idservicios"), null, null);
+						servicio = new Servicio(
+								rs.getInt("servicios_idservicios"), 
+								null, 
+								null
+								);
 
 						//Completo
-						sesion = new Sesion(rs.getInt("id"), cliente, trabajador, servicio,
-								rs.getTimestamp("fecha"), rs.getString("resena"), rs.getString("calificacion"));
+						sesion = new Sesion(
+								rs.getInt("id"), 
+								cliente, 
+								trabajador, 
+								servicio,
+								rs.getTimestamp("fecha"), 
+								rs.getString("resena"), 
+								rs.getString("calificacion")
+								);
 					}
 					
 					return sesion;

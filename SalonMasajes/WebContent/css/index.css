@@ -5,6 +5,9 @@ body {
 	background: #CCDEE3;
 }
 
+main {
+	padding-botton: 4em;
+}
 h1, h2, h3 {
 	color: #3b4652;
 }
@@ -77,9 +80,24 @@ input[type="radio"]:checked ~ label {
 /* Fin Valoración estrellas*/
 
 #logo {
-	width: 2.5em;
+	width: 2.2em;
 }
 
+.head-tabla, .foot-tabla{
+	background: #7AA6CC;
+}
+
+.btn-add {
+	background: #7AA6CC;
+}
+
+.btn-edit {
+	background: #DFE668;
+}
+
+.btn-del {
+	background: #AB1C00;
+}
 footer p {
 	color: #3b4652;	
 }

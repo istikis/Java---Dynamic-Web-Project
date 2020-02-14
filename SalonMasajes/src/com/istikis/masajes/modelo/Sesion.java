@@ -3,6 +3,7 @@ package com.istikis.masajes.modelo;
 import java.util.Date;
 
 public class Sesion {
+	
 	private Integer id;
 	
 	private Cliente cliente;
