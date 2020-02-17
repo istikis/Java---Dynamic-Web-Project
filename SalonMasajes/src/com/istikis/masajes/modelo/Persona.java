@@ -1,6 +1,7 @@
 package com.istikis.masajes.modelo;
 
 public class Persona {
+	
 	private Integer id;
 	private String nombre, apellidos;
 	private String dni;

@@ -5,8 +5,8 @@
 
 	<p class="copyright col d-flex align-items-center m-0">masajistas.com &copy;2020 - Todos los Derechos Reservados</p>
 	<p class="redes-sociales col text-right m-1">
-		<i class="fab fa-facebook-square"></i> 
-		<i class="fab fa-twitter-square"></i>
+		<i class="redes fab fa-facebook-square"></i> 
+		<i class="redes fab fa-twitter-square"></i>
 	</p>
 </footer>
 </body>

@@ -20,12 +20,12 @@ import com.istikis.masajes.modelo.Trabajador;
 
 public class SesionMySQL implements Dao<Sesion> {
 	
-	private static final String SQL_GET_ALL = "SELECT * \r\n" + "FROM actuaciones ses\r\n"
+	private static final String SQL_GET_ALL = "SELECT * \r\n" + "FROM sesiones ses\r\n"
 			+ "JOIN clientes c ON c.idclientes = ses.clientes_idclientes\r\n"
 			+ "JOIN trabajadores t ON t.idtrabajadores = ses.trabajadores_idtrabajadores\r\n"
 			+ "JOIN servicios s ON s.idservicios = ses.servicios_idservicios;";
 	
-	private static final String SQL_GET_ID = "SELECT * FROM actuaciones WHERE id=?";
+	private static final String SQL_GET_ID = "SELECT * FROM sesiones WHERE id=?";
 	
 	private static String url, usuario, password;
 	

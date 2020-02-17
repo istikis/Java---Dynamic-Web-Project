@@ -63,10 +63,10 @@
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item ml-5"><a class="nav-link" href="vistas/index.jsp"><i class="fas fa-home"></i> Inicio</a></li>
 					<li class="nav-item"><a class="nav-link" href="vistas/index.jsp"><i class="fas fa-tools"></i> Panel de Administración</a></li>
-					<li class="nav-item"><a class="nav-link" href="admin/index">Sesiones</a></li>
+					<!-- <li class="nav-item"><a class="nav-link" href="admin/index">Sesiones</a></li>
 					<li class="nav-item"><a class="nav-link" href="admin/clientes">Clientes</a></li>
 					<li class="nav-item"><a class="nav-link" href="admin/servicios">Servicios</a></li>
-					<li class="nav-item"><a class="nav-link" href="admin/trabajadores">Trabajadores</a></li>
+					<li class="nav-item"><a class="nav-link" href="admin/trabajadores">Trabajadores</a></li> -->
 				</ul>
 				
 				<c:choose>
