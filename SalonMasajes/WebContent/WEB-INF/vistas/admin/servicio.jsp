@@ -2,7 +2,11 @@
 
 <%@ include file="/WEB-INF/vistas/layout/head.jsp" %>
 
-<section class="container col col-sm-6 mt-4 justify-content-center" id="servicios">
+<div class="row">
+	<section class="col col-sm-2">
+	<%@ include file="/WEB-INF/vistas/layout/menu_admin.jsp"%>
+	</section>
+	<section class="container col col-sm-8 mt-4 justify-content-center" id="servicios">
 
 <h3 class="mb-4">Tabla Servicios</h3>
 	 <table
@@ -34,5 +38,7 @@
 	<a class="btn btn-primary" href="admin/add_servicio?op=agregar"><span><i class="fas fa-plus"></i></span> Nuevo Servicio</a>
 
 </section>
+</div>
+
 
 <%@ include file="/WEB-INF/vistas/layout/footer.jsp" %>

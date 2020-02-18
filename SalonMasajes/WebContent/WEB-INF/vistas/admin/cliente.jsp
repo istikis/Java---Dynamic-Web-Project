@@ -2,7 +2,11 @@
 
 <%@ include file="/WEB-INF/vistas/layout/head.jsp" %>
 
-<section  class="container col col-sm-6 mt-4 justify-content-center" id="clientes">
+<div class="row">
+	<section class="col col-sm-2">
+		<%@ include file="/WEB-INF/vistas/layout/menu_admin.jsp"%>
+	</section>
+	<section  class="container col col-sm-8 mt-4 justify-content-center" id="clientes">
 
 <h3 class="mb-4">Tabla Clientes</h3>
 
@@ -37,5 +41,7 @@
 	<a class="btn-add btn btn-primary" href="admin/add_cliente?op=agregar"><span><i class="fas fa-plus"></i></span> Añadir</a>
 
 </section>
+</div>
+
 
 <%@ include file="/WEB-INF/vistas/layout/footer.jsp" %>
