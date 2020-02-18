@@ -23,7 +23,7 @@
 						class="form-control" 
 						id="id" 
 						name="id"
-						value="${cliente.idCliente}" 
+						value="${cliente.id}" 
 						readonly
 						>
 				</div>				

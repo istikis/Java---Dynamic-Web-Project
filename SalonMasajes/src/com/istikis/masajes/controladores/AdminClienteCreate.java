@@ -50,7 +50,7 @@ public class AdminClienteCreate extends HttpServlet {
 			break;
 		case "modificar":
 			cliente = new Cliente(Integer.parseInt(id), nombre, apellidos, dni);
-			Globales.daoCliente.modificar(cliente);
+			Globales.daoCliente.modificar(cliente);;
 			break;
 
 		default:

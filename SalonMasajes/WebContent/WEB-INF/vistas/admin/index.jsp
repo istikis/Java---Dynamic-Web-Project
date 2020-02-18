@@ -3,9 +3,9 @@
 
 <%@ include file="/WEB-INF/vistas/layout/head.jsp"%>
 
-<div class="row">
-	<section class="col col-sm-2">
-	<%@ include file="/WEB-INF/vistas/layout/menu_admin.jsp"%>
+<div class="div-menu row">
+	<section class="section-panel col col-sm-2">
+		<%@ include file="/WEB-INF/vistas/layout/menu_admin.jsp"%>
 	</section>
 	<section class="container col col-sm-10 mt-4 justify-content-center"
 		id="sesiones">
