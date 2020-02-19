@@ -14,17 +14,17 @@
 		class="masaje card col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-5">
 		<div class="card-body m-0">
 			<a href="admin/index"><img src="img/logo.png" class="card-img-top" alt="masaje facial"></a>
-			<h3 class="card-title text-justify text-center"><a href="vistas/masaje.jsp">Masaje Facial</a></h3>
-			<p class="text-justify">Además de alisar y reafirmar, te garantiza una relajación óptima. El masaje facial permite 
-				...</p>
+			<h3 class="card-title text-justify text-center"><a href="admin/index">Masaje Facial</a></h3>
+			<p class="text-justify">Además de alisar y reafirmar, te garantiza una relajación óptima. 
+				El masaje facial permite...</p>
 		</div>
 	</article>
 
 	<article id="masaje"
 		class="masaje card col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-5">
 		<div class="card-body m-0">
-		<a href="vistas/masaje.jsp"><img src="img/logo.png" class="card-img-top" alt=""></a>
-		<h3 class="card-title text-justify text-center"><a href="vistas/masaje.jsp">Drenaje Linfático</a></h3>
+		<a href="admin/index"><img src="img/logo.png" class="card-img-top" alt=""></a>
+		<h3 class="card-title text-justify text-center"><a href="admin/index">Drenaje Linfático</a></h3>
 		<p class="text-justify">Además de alisar y reafirmar, te garantiza una relajación óptima. 
 			El masaje facial perm<a href="admin/index">...Leer más</a></p>			
 		</div>
@@ -33,8 +33,8 @@
 	<article id="masaje"
 		class="masaje card col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-5">
 		<div class="card-body m-0">
-			<a href="vistas/masaje.jsp"><img src="img/logo.png" class="card-img-top" alt="cobertura de algas"></a>
-			<h3 class="card-title text-justify text-center"><a href="vistas/masaje.jsp">Cobertura de Algas</a></h3>
+			<a href="admin/index"><img src="img/logo.png" class="card-img-top" alt="cobertura de algas"></a>
+			<h3 class="card-title text-justify text-center"><a href="admin/indexp">Cobertura de Algas</a></h3>
 			<p class="text-justify p-0">Además de alisar y reafirmar, te garantiza una relajación óptima.</p>
 		</div>
 	</article>
@@ -42,8 +42,8 @@
 	<article id="masaje"
 		class="masaje card col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-5">
 		<div class="card-body m-0">
-			<a href="vistas/masaje.jsp"><img src="img/logo.png" class="card-img-top" alt="cobertura de barro"></a>
-			<h3 class="card-title text-justify text-center"><a href="vistas/masaje.jsp">Cobertura de Barro</a></h3>
+			<a href="admin/index"><img src="img/logo.png" class="card-img-top" alt="cobertura de barro"></a>
+			<h3 class="card-title text-justify text-center"><a href="admin/index">Cobertura de Barro</a></h3>
 			<p class="text-justify p-0">Además de alisar y reafirmar, te garantiza una relajación óptima.</p>
 		</div>
 	</article>

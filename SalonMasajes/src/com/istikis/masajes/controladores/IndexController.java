@@ -12,10 +12,7 @@ public class IndexController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("clientes", Globales.daoCliente.getAll());
 		
-		// TODO Pendiente de cambiar "actuaciones· por "sesiones" en las JSPs
-		request.setAttribute("actuaciones", Globales.daoSesion.getAll());
 		request.getRequestDispatcher("/WEB-INF/vistas/index.jsp").forward(request, response);
 	}
 
