@@ -11,6 +11,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 import com.istikis.masajes.modelo.Servicio;
 
 public class ServicioMySQL implements Dao<Servicio> {
@@ -23,51 +28,100 @@ public class ServicioMySQL implements Dao<Servicio> {
 	private static final String SQL_DELETE = "DELETE FROM servicios WHERE idservicios=?";
 	
 	private static String url, usuario, password;
+	private static DataSource pool;
 	
-	// SINGLETON
-			private static ServicioMySQL instancia;
-			
+	// "SINGLETON"
 			private ServicioMySQL(String url, String usuario, String password) {
-				ServicioMySQL.url = url;
-				ServicioMySQL.usuario = usuario;
-				ServicioMySQL.password = password;
-				
-				try {
-					Class.forName("com.mysql.cj.jdbc.Driver");
-				} catch (ClassNotFoundException e) {
-					throw new AccesoDatosException("No se ha encontrado el driver de MySQL");
-				}
+				this.url = url;
+				this.usuario = usuario;
+				this.password = password;
 			}
-			
-			public static ServicioMySQL getInstancia(String pathConfiguracion) {
-				try {
-					if (instancia == null) {
-						Properties configuracion = new Properties();
-						configuracion.load(new FileInputStream(pathConfiguracion));
 
-						instancia = new ServicioMySQL(configuracion.getProperty("mysql.url"),
-								configuracion.getProperty("mysql.usuario"), configuracion.getProperty("mysql.password"));
+			private static ServicioMySQL instancia;
+
+			/**
+			 * Se usará para inicializar la instancia
+			 * 
+			 * @param url
+			 * @param usuario
+			 * @param password
+			 * @return La instancia
+			 */
+			public static ServicioMySQL getInstancia(String url, String usuario, String password) {
+				// Si no existe la instancia...
+				if (instancia == null) {
+					// ...la creamos
+					instancia = new ServicioMySQL(url, usuario, password);
+					// Si existe la instancia, pero sus valores no concuerdan...
+				} else if (!instancia.url.equals(url) || !instancia.usuario.equals(usuario)
+						|| !instancia.password.contentEquals(password)) {
+					// ...lanzar un error
+					throw new RepositoriosException("No se pueden cambiar los valores de la instancia una vez inicializada");
+				}
+
+				// Devolver la instancia recién creada o la existente (cuyos datos coinciden con
+				// los que tiene)
+				return instancia;
+			}
+
+			/**
+			 * Se usará para recuperar la instancia ya existente
+			 * 
+			 * @return devuelve la instancia ya existente
+			 */
+			public static ServicioMySQL getInstancia() {
+				// Si no existe la instancia...
+				if (instancia == null) {
+					// ...no se puede obtener porque no sabemos los datos de URL, usuario y password
+					throw new RepositoriosException("Necesito que me pases URL, usuario y password");
+				}
+
+				// Si ya existe, se devuelve
+				return instancia;
+			}
+
+			/**
+			 * Usaremos un pool de conexiones determinado
+			 * 
+			 * @return devuelve la instancia del pool de conexiones
+			 */
+			public static ServicioMySQL getInstancia(String entorno) {
+				InitialContext initCtx;
+				try {
+					initCtx = new InitialContext();
+
+					Context envCtx = (Context) initCtx.lookup("java:comp/env");
+					DataSource dataSource = (DataSource) envCtx.lookup(entorno);
+
+					ServicioMySQL.pool = dataSource;
+
+					if(instancia == null) {
+						instancia = new ServicioMySQL(null, null, null);
 					}
-
+					
 					return instancia;
-				} catch (FileNotFoundException e) {
-					throw new AccesoDatosException("Fichero de configuración no encontrado", e);
-				} catch (IOException e) {
-					throw new AccesoDatosException("Fallo de lectura/escritura al fichero", e);
+				} catch (NamingException e) {
+					throw new RepositoriosException("No se ha podido conectar al Pool de conexiones " + entorno);
 				}
 			}
-			
-			// FIN SINGLETON
+			// FIN "SINGLETON"
 			
 			private Connection getConexion() {
 				try {
-					return DriverManager.getConnection(url, usuario, password);
+					if (pool == null) {
+						new com.mysql.cj.jdbc.Driver();
+						return DriverManager.getConnection(url, usuario, password);
+					} else {
+						return pool.getConnection();
+					}
 				} catch (SQLException e) {
-					throw new AccesoDatosException("Error en la conexión a la base de datos");
+					System.err
+							.println("IPARTEK: Error de conexión a la base de datos: " + url + ":" + usuario + ":" + password);
+					e.printStackTrace();
+
+					throw new RepositoriosException("No se ha podido conectar a la base de datos", e);
 				}
 			}
-			
-
 	@Override
 	public Iterable<Servicio> getAll() {
 		try (Connection con = getConexion()) {

@@ -56,19 +56,17 @@ public class FabricaDaoProperties implements FabricaDao{
 
 		@Override
 		public Dao<Sesion> getSesionDao() {
+			
 			if(tipo == null) {
 				throw new RepositoriosException("No se ha recibido ningún tipo");
 			}
 			
-			
 			// HAY QUE MODIFICAR EL SINGLETON QUE CORRESPONDE A SESION
-//			switch (tipo) {
-//			case "mysql": return SesionMySQL.getInstancia(pathConfiguracion);
-//			default:
-//				throw new RepositoriosException("No reconozco el tipo " + tipo);
-//			}
-			
-			return null;//ELIMINAR ESTE RETURN!!
+			switch (tipo) {
+			case "mysql": return SesionMySQL.getInstancia(url, usuario, password);
+			default:
+				throw new RepositoriosException("No reconozco el tipo " + tipo);
+			}
 		}
 
 		@Override
@@ -88,34 +86,32 @@ public class FabricaDaoProperties implements FabricaDao{
 		public Dao<Trabajador> getTrabajadorDao() {
 			
 			// LO MISMO QUE EL DE ARRIBA, PROBLEMAS CON EL SINGLETON
-//			if(tipo == null) {
-//				throw new RepositoriosException("No se ha recibido ningún tipo");
-//			}
-//			
-//			switch (tipo) {
-//			case "mysql": return TrabajadorMySQL.getInstancia(url, usuario, password);
-//			default:
-//				throw new RepositoriosException("No reconozco el tipo " + tipo);
-//			}
-			return null;
+			if(tipo == null) {
+				throw new RepositoriosException("No se ha recibido ningún tipo");
+			}
+			
+			switch (tipo) {
+			case "mysql": return TrabajadorMySQL.getInstancia(url, usuario, password);
+			default:
+				throw new RepositoriosException("No reconozco el tipo " + tipo);
+			}
+			
 		}
 
 		@Override
 		public Dao<Servicio> getServicioDao() {
 			
 			//PROBLEMAS CON EL SINGLETON
-//			if(tipo == null) {
-//				throw new RepositoriosException("No se ha recibido ningún tipo");
-//			}
-//			
-//			switch (tipo) {
-//			case "mysql": return ServicioMySQL.getInstancia(url, usuario, password);
-//			default:
-//				throw new RepositoriosException("No reconozco el tipo " + tipo);
-//			}
-			
-			return null;
+		if (tipo == null) {
+			throw new RepositoriosException("No se ha recibido ningún tipo");
 		}
+		switch (tipo) {
+		case "mysql":
+			return ServicioMySQL.getInstancia(url, usuario, password);
+		default:
+			throw new RepositoriosException("No reconozco el tipo " + tipo);
+		}
+	}
 
 	
 
