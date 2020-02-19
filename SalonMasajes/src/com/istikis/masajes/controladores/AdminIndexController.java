@@ -16,8 +16,8 @@ public class AdminIndexController extends HttpServlet {
 		
 		//Actuaciones sesiones = new Actuaciones(new Cliente(), new Trabajador(), new Servicio(), fecha, resena, calificacion)
 	
-		request.setAttribute("sesiones", Globales.daoSesion.obtenerTodos());
-		request.setAttribute("clientes", Globales.daoCliente.obtenerTodos());
+		request.setAttribute("sesiones", Globales.daoSesion.getAll());
+		request.setAttribute("clientes", Globales.daoCliente.getAll());
 		request.getRequestDispatcher("/WEB-INF/vistas/admin/index.jsp").forward(request, response);
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

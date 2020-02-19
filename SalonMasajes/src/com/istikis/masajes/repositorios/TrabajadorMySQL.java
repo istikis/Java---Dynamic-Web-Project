@@ -71,7 +71,7 @@ public class TrabajadorMySQL implements Dao<Trabajador> {
 			
 	
 	@Override
-	public Iterable<Trabajador> obtenerTodos() {
+	public Iterable<Trabajador> getAll() {
 		try (Connection con = getConexion()) {
 			try(PreparedStatement ps = con.prepareStatement(SQL_SELECT)) {
 				try(ResultSet rs = ps.executeQuery()){
@@ -94,7 +94,7 @@ public class TrabajadorMySQL implements Dao<Trabajador> {
 		}
 	}
 	@Override
-	public Trabajador obtenerPorId(Integer id) {
+	public Trabajador getById(Integer id) {
 		try (Connection con = getConexion()) {
 			try(PreparedStatement ps = con.prepareStatement(SQL_SELECT_BY_ID)) {
 				
@@ -118,7 +118,7 @@ public class TrabajadorMySQL implements Dao<Trabajador> {
 		}
 	}
 	@Override
-	public void agregar(Trabajador trabajador) {
+	public Integer insert(Trabajador trabajador){
 		try (Connection con = getConexion()) {
 			try(PreparedStatement ps = con.prepareStatement(SQL_INSERT)) {
 				
@@ -135,9 +135,10 @@ public class TrabajadorMySQL implements Dao<Trabajador> {
 		} catch (SQLException e) {
 			throw new AccesoDatosException("Error al insertar el Trabajador", e);
 		}
+		return null; // alcambiar de void a integer el Dao me pide un return
 	}
 	@Override
-	public void modificar(Trabajador trabajador) {
+	public void update(Trabajador trabajador) {
 		try (Connection con = getConexion()) {
 			try(PreparedStatement ps = con.prepareStatement(SQL_UPDATE)) {
 				
@@ -157,7 +158,7 @@ public class TrabajadorMySQL implements Dao<Trabajador> {
 		}
 	}
 	@Override
-	public void borrar(Integer id) {
+	public void delete(Integer id) {
 		try (Connection con = getConexion()) {
 			try(PreparedStatement ps = con.prepareStatement(SQL_DELETE)) {
 				

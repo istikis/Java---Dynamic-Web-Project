@@ -15,7 +15,7 @@ public class AdminBorrarServicio extends HttpServlet {
 		
 		String id = request.getParameter("id");
 		
-		Globales.daoServicio.borrar(Integer.parseInt(id));
+		Globales.daoServicio.delete(Integer.parseInt(id));
 		
 		response.sendRedirect(request.getContextPath() + "/admin/servicios");
 	}

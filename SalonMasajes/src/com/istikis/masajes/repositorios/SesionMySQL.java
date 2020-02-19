@@ -75,7 +75,7 @@ public class SesionMySQL implements Dao<Sesion> {
 		}
 
 	@Override
-	public Iterable<Sesion> obtenerTodos() {
+	public Iterable<Sesion> getAll() {
 		try (Connection con = getConexion()) {
 			try (Statement s = con.createStatement()) {
 				try (ResultSet rs = s.executeQuery(SQL_GET_ALL)) {
@@ -135,7 +135,7 @@ public class SesionMySQL implements Dao<Sesion> {
 	}
 
 	@Override
-	public Sesion obtenerPorId(Integer id) {
+	public Sesion getById(Integer id) {
 		try (Connection con = getConexion()) {
 			try (PreparedStatement ps = con.prepareStatement(SQL_GET_ID)) {
 				ps.setInt(1, id);
@@ -194,19 +194,19 @@ public class SesionMySQL implements Dao<Sesion> {
 	}
 
 	@Override
-	public void agregar(Sesion sesion) {
+	public Integer insert(Sesion sesion) {
 		throw new UnsupportedOperationException("NO ESTA IMPLEMENTADO");
 		
 	}
 
 	@Override
-	public void modificar(Sesion sesion) {
+	public void update(Sesion sesion) {
 		throw new UnsupportedOperationException("NO ESTA IMPLEMENTADO");
 		
 	}
 
 	@Override
-	public void borrar(Integer id) {
+	public void delete(Integer id) {
 		throw new UnsupportedOperationException("NO ESTA IMPLEMENTADO");
 		
 	}

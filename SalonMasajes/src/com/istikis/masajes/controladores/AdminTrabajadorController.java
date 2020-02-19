@@ -14,7 +14,7 @@ public class AdminTrabajadorController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.setAttribute("trabajadores", Globales.daoTrabajador.obtenerTodos());
+		request.setAttribute("trabajadores", Globales.daoTrabajador.getAll());
 		request.getRequestDispatcher("/WEB-INF/vistas/admin/trabajador.jsp").forward(request, response);
 	}
 

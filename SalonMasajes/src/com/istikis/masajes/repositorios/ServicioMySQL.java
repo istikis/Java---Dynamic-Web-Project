@@ -69,7 +69,7 @@ public class ServicioMySQL implements Dao<Servicio> {
 			
 
 	@Override
-	public Iterable<Servicio> obtenerTodos() {
+	public Iterable<Servicio> getAll() {
 		try (Connection con = getConexion()) {
 			try(PreparedStatement ps = con.prepareStatement(SQL_SELECT)) {
 				try(ResultSet rs = ps.executeQuery()){
@@ -92,7 +92,7 @@ public class ServicioMySQL implements Dao<Servicio> {
 	}
 
 	@Override
-	public Servicio obtenerPorId(Integer id) {
+	public Servicio getById(Integer id) {
 		try (Connection con = getConexion()) {
 			try(PreparedStatement ps = con.prepareStatement(SQL_SELECT_BY_ID)) {
 				
@@ -116,7 +116,7 @@ public class ServicioMySQL implements Dao<Servicio> {
 	}
 
 	@Override
-	public void agregar(Servicio servicio) {
+	public Integer insert(Servicio servicio) {
 		try (Connection con = getConexion()) {
 			try(PreparedStatement ps = con.prepareStatement(SQL_INSERT)) {
 				
@@ -132,10 +132,11 @@ public class ServicioMySQL implements Dao<Servicio> {
 		} catch (SQLException e) {
 			throw new AccesoDatosException("Error al insertar el servicio", e);
 		}
+		return null;// return al cambiar de void a integer
 	}
 
 	@Override
-	public void modificar(Servicio servicio) {
+	public void update(Servicio servicio) {
 		try (Connection con = getConexion()) {
 			try(PreparedStatement ps = con.prepareStatement(SQL_UPDATE)) {
 				
@@ -155,7 +156,7 @@ public class ServicioMySQL implements Dao<Servicio> {
 	}
 
 	@Override
-	public void borrar(Integer id) {
+	public void delete(Integer id) {
 		try (Connection con = getConexion()) {
 			try(PreparedStatement ps = con.prepareStatement(SQL_DELETE)) {
 				ps.setLong(1, id);

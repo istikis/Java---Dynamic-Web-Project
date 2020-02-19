@@ -25,14 +25,14 @@ String id = request.getParameter("id");
 		if(id != null) {
 			Integer idInteger = new Integer(id);
 			
-			Sesion sesion = Globales.daoSesion.obtenerPorId(idInteger);
+			Sesion sesion = Globales.daoSesion.getById(idInteger);
 			
 			request.setAttribute("sesion", sesion);
 		}
 		
-		Iterable<Cliente> clientes = Globales.daoCliente.obtenerTodos();
-		Iterable<Trabajador> trabajadores = Globales.daoTrabajador.obtenerTodos();
-		Iterable<Servicio> servicios = Globales.daoServicio.obtenerTodos();
+		Iterable<Cliente> clientes = Globales.daoCliente.getAll();
+		Iterable<Trabajador> trabajadores = Globales.daoTrabajador.getAll();
+		Iterable<Servicio> servicios = Globales.daoServicio.getAll();
 		
 		request.setAttribute("clientes", clientes);
 		request.setAttribute("trabajadores", trabajadores);
@@ -86,10 +86,10 @@ String id = request.getParameter("id");
 					new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").parse(fecha), resena, calificacion);
 			
 			if (id == null || id.trim().length() == 0) {
-				Globales.daoSesion.agregar(sesion);;
+				Globales.daoSesion.insert(sesion);;
 			} else {
 				sesion.setId(Integer.parseInt(id));
-				Globales.daoSesion.modificar(sesion);
+				Globales.daoSesion.update(sesion);
 			}
 
 		} catch (NumberFormatException | ParseException e) {

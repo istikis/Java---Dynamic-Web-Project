@@ -3,6 +3,7 @@ package com.istikis.masajes.repositorios;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -11,135 +12,208 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 import com.istikis.masajes.repositorios.AccesoDatosException;
+import com.istikis.masajes.repositorios.ClienteMySQL;
+import com.istikis.masajes.repositorios.RepositoriosException;
 import com.istikis.masajes.modelo.Cliente;
 
 public class ClienteMySQL implements Dao<Cliente>{
 	
-	private static final String SQL_SELECT = "SELECT * FROM clientes";
-	private static final String SQL_SELECT_BY_ID = "SELECT * FROM clientes WHERE idclientes=?";
+	private static final String SQL_GET_ALL = "CALL clientesGetAll()";
 
-	private static final String SQL_INSERT = "INSERT INTO clientes (nombre, apellidos, dni) VALUES (?,?,?)";
-	private static final String SQL_UPDATE = "UPDATE clientes SET nombre=?, apellidos=?, dni=? WHERE idclientes=?";
-	private static final String SQL_DELETE = "DELETE FROM clientes WHERE idclientes=?";
+	private static final String SQL_GET_BY_ID = "CALL clientesGetById(?)";
 
+	private static final String SQL_INSERT = "CALL clientesInsert(?,?,?,?)";
+	
+	private static final String SQL_UPDATE = null;
+
+	private static final String SQL_DELETE = null;
+	
 	private static String url, usuario, password;
 	
-	// SINGLETON
-		private static ClienteMySQL instancia;
-		
+	private static DataSource pool;
+	
+	// "SINGLETON"
 		private ClienteMySQL(String url, String usuario, String password) {
-			ClienteMySQL.url = url;
-			ClienteMySQL.usuario = usuario;
-			ClienteMySQL.password = password;
-			
-			try {
-				Class.forName("com.mysql.cj.jdbc.Driver");
-			} catch (ClassNotFoundException e) {
-				throw new AccesoDatosException("No se ha encontrado el driver de MySQL");
-			}
+			this.url = url;
+			this.usuario = usuario;
+			this.password = password;
 		}
-		
-		public static ClienteMySQL getInstancia(String pathConfiguracion) {
-			try {
-				if (instancia == null) {
-					Properties configuracion = new Properties();
-					configuracion.load(new FileInputStream(pathConfiguracion));
 
-					instancia = new ClienteMySQL(configuracion.getProperty("mysql.url"),
-							configuracion.getProperty("mysql.usuario"), configuracion.getProperty("mysql.password"));
+		private static ClienteMySQL instancia;
+
+		/**
+		 * Se usará para inicializar la instancia
+		 * 
+		 * @param url
+		 * @param usuario
+		 * @param password
+		 * @return La instancia
+		 */
+		public static ClienteMySQL getInstancia(String url, String usuario, String password) {
+			// Si no existe la instancia...
+			if (instancia == null) {
+				// ...la creamos
+				instancia = new ClienteMySQL(url, usuario, password);
+				// Si existe la instancia, pero sus valores no concuerdan...
+			} else if (!instancia.url.equals(url) || !instancia.usuario.equals(usuario)
+					|| !instancia.password.contentEquals(password)) {
+				// ...lanzar un error
+				throw new RepositoriosException("No se pueden cambiar los valores de la instancia una vez inicializada");
+			}
+
+			// Devolver la instancia recién creada o la existente (cuyos datos coinciden con
+			// los que tiene)
+			return instancia;
+		}
+
+		/**
+		 * Se usará para recuperar la instancia ya existente
+		 * 
+		 * @return devuelve la instancia ya existente
+		 */
+		public static ClienteMySQL getInstancia() {
+			// Si no existe la instancia...
+			if (instancia == null) {
+				// ...no se puede obtener porque no sabemos los datos de URL, usuario y password
+				throw new RepositoriosException("Necesito que me pases URL, usuario y password");
+			}
+
+			// Si ya existe, se devuelve
+			return instancia;
+		}
+
+		/**
+		 * Usaremos un pool de conexiones determinado
+		 * 
+		 * @return devuelve la instancia del pool de conexiones
+		 */
+		public static ClienteMySQL getInstancia(String entorno) {
+			InitialContext initCtx;
+			try {
+				initCtx = new InitialContext();
+
+				Context envCtx = (Context) initCtx.lookup("java:comp/env");
+				DataSource dataSource = (DataSource) envCtx.lookup(entorno);
+
+				ClienteMySQL.pool = dataSource;
+
+				if(instancia == null) {
+					instancia = new ClienteMySQL(null, null, null);
 				}
-
+				
 				return instancia;
-			} catch (FileNotFoundException e) {
-				throw new AccesoDatosException("Fichero de configuración no encontrado", e);
-			} catch (IOException e) {
-				throw new AccesoDatosException("Fallo de lectura/escritura al fichero", e);
+			} catch (NamingException e) {
+				throw new RepositoriosException("No se ha podido conectar al Pool de conexiones " + entorno);
 			}
 		}
-		
-		// FIN SINGLETON
+		// FIN "SINGLETON"
 		
 		private Connection getConexion() {
 			try {
-				return DriverManager.getConnection(url, usuario, password);
+				if (pool == null) {
+					new com.mysql.cj.jdbc.Driver();
+					return DriverManager.getConnection(url, usuario, password);
+				} else {
+					return pool.getConnection();
+				}
 			} catch (SQLException e) {
-				throw new AccesoDatosException("Error en la conexión a la base de datos");
+				System.err
+						.println("IPARTEK: Error de conexión a la base de datos: " + url + ":" + usuario + ":" + password);
+				e.printStackTrace();
+
+				throw new RepositoriosException("No se ha podido conectar a la base de datos", e);
 			}
 		}
 		
 	@Override
-	public Iterable<Cliente> obtenerTodos() {
+	public Iterable<Cliente> getAll() {
 		try (Connection con = getConexion()) {
-			try(PreparedStatement ps = con.prepareStatement(SQL_SELECT)) {
-				try(ResultSet rs = ps.executeQuery()){
+			try (CallableStatement s = con.prepareCall(SQL_GET_ALL)) {
+				try (ResultSet rs = s.executeQuery()) {
 					ArrayList<Cliente> clientes = new ArrayList<>();
-					
-					while(rs.next()) {
-						clientes.add(new Cliente(
-								rs.getInt("idclientes"),
-								rs.getString("nombre"), 
-								rs.getString("apellidos"), 
-								rs.getString("dni")
-								));
+
+					Cliente cliente;
+
+					while (rs.next()) {
+						cliente = new Cliente(rs.getInt("idclientes"), rs.getString("nombre"),
+								rs.getString("apellidos"), rs.getString("dni"));
+
+						clientes.add(cliente);
 					}
-					
+
 					return clientes;
+				} catch (SQLException e) {
+					throw new RepositoriosException("Error al acceder a los registros", e);
 				}
+			} catch (SQLException e) {
+				throw new RepositoriosException("Error al crear la sentencia", e);
 			}
 		} catch (SQLException e) {
-			throw new AccesoDatosException("Error al obtener todos los clientes", e);
+			throw new RepositoriosException("Error al conectar", e);
 		}
 	}
 	
 
 	@Override
-	public Cliente obtenerPorId(Integer id) {
+	public Cliente getById(Integer id) {
 		try (Connection con = getConexion()) {
-			try(PreparedStatement ps = con.prepareStatement(SQL_SELECT_BY_ID)) {
-				ps.setLong(1, id);
-				
-				try(ResultSet rs = ps.executeQuery()){
-									
-					if(rs.next()) {
-						return new Cliente(
-								rs.getInt("idclientes"), 
-								rs.getString("nombre"), 
-								rs.getString("apellidos"), 
-								rs.getString("dni")
-								);
-					} else {
-						return null;
+			try (CallableStatement s = con.prepareCall(SQL_GET_BY_ID)) {
+				s.setInt(1, id);
+				try (ResultSet rs = s.executeQuery()) {
+					Cliente cliente = null;
+
+					if (rs.next()) {
+						cliente = new Cliente(rs.getInt("idclientes"), rs.getString("nombre"),
+								rs.getString("apellidos"), rs.getString("dni"));
 					}
+
+					return cliente;
+				} catch (SQLException e) {
+					throw new RepositoriosException("Error al acceder a los registros", e);
 				}
+			} catch (SQLException e) {
+				throw new RepositoriosException("Error al crear la sentencia", e);
 			}
 		} catch (SQLException e) {
-			throw new AccesoDatosException("Error al obtener el Cliente id: " + id, e);
+			throw new RepositoriosException("Error al conectar", e);
 		}
 	}
 
 	@Override
-	public void agregar(Cliente cliente) {
+	public Integer insert(Cliente cliente) {
 		try (Connection con = getConexion()) {
-			try(PreparedStatement ps = con.prepareStatement(SQL_INSERT)) {
+			try (CallableStatement s = con.prepareCall(SQL_INSERT)) {
 				
-				ps.setString(1, cliente.getNombre());
-				ps.setString(2, cliente.getApellidos());
-				ps.setString(3, cliente.getDni());
-				
-				int numeroRegistrosModificados = ps.executeUpdate();
-				
-				if(numeroRegistrosModificados != 1) {
-					throw new AccesoDatosException("Se ha hecho más o menos de una insert");
+				s.setString(1, cliente.getNombre());
+				s.setString(2, cliente.getApellidos());
+				s.setString(3, cliente.getDni());
+
+				s.registerOutParameter(4, java.sql.Types.INTEGER);
+
+				int numeroRegistrosModificados = s.executeUpdate();
+
+				if (numeroRegistrosModificados != 1) {
+					throw new RepositoriosException("Número de registros modificados: " + numeroRegistrosModificados);
 				}
+
+				return s.getInt(4); // atento a este que era void
+
+			} catch (SQLException e) {
+				throw new RepositoriosException("Error al crear la sentencia", e);
 			}
 		} catch (SQLException e) {
-			throw new AccesoDatosException("Error al insertar cliente", e);
-		}		
+			throw new RepositoriosException("Error al conectar", e);
+		}	
 	}
 
 	@Override
-	public void modificar(Cliente cliente) {
+	public void update(Cliente cliente) {
 		try (Connection con = getConexion()) {
 			try(PreparedStatement ps = con.prepareStatement(SQL_UPDATE)) {
 				
@@ -161,7 +235,7 @@ public class ClienteMySQL implements Dao<Cliente>{
 	}
 
 	@Override
-	public void borrar(Integer id) {
+	public void delete(Integer id) {
 		try (Connection con = getConexion()) {
 			try(PreparedStatement ps = con.prepareStatement(SQL_DELETE)) {
 				

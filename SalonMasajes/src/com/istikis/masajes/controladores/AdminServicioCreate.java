@@ -23,7 +23,7 @@ public class AdminServicioCreate extends HttpServlet {
 		String op = request.getParameter("op");
 		
 		if (id != null) {
-			Servicio servicio = Globales.daoServicio.obtenerPorId(Integer.parseInt(id));
+			Servicio servicio = Globales.daoServicio.getById(Integer.parseInt(id));
 			request.setAttribute("servicio", servicio);
 		}
 		
@@ -46,11 +46,11 @@ public class AdminServicioCreate extends HttpServlet {
 		switch (op) {
 		case "agregar":
 			servicio = new Servicio(nombre, precio);
-			Globales.daoServicio.agregar(servicio);
+			Globales.daoServicio.insert(servicio);
 			break;
 		case "modificar":
 			servicio = new Servicio(Integer.parseInt(id), nombre, precio);
-			Globales.daoServicio.modificar(servicio);
+			Globales.daoServicio.update(servicio);
 			break;
 
 		default:

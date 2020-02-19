@@ -6,7 +6,7 @@
 <div class="div-menu row">
 	<section class="section-panel col col-sm-2">
 		<%@ include file="/WEB-INF/vistas/layout/menu_admin.jsp"%>
-	</section>
+	</section>	
 	<section class="container col col-sm-10 mt-4 justify-content-center"
 		id="sesiones">
 		<h3>Sesiones</h3>
@@ -29,22 +29,24 @@
 				<c:forEach items="${sesiones}" var="s">
 					<tr>
 						<td>${s.id}</td>
-						<td>${s.cliente.nombre}${s.cliente.apellidos}</td>
-						<td>${s.trabajador.nombre}${s.trabajador.apellidos}</td>
+						<td>${s.cliente.nombre} ${s.cliente.apellidos}</td>
+						<td>${s.trabajador.nombre} ${s.trabajador.apellidos}</td>
 						<td>${s.servicio.nombre}</td>
-						<td><fmt:formatDate value="${s.fecha}"
-								pattern="dd-MM-yyyy HH:mm" /></td>
-						<td><a class="text-reset"
-							href="javascript:alert('${s.resena}')">
-								${fn:substring(s.resena, 0, 20)}... </a></td>
+						<td>
+							<fmt:formatDate value="${s.fecha}"
+								pattern="dd-MM-yyyy HH:mm" />
+						</td>
+						<td>
+							<a class="text-reset"
+								href="javascript:alert('${s.resena}')">
+								${fn:substring(s.resena, 0, 20)}... </a>
+						</td>
 						<td>${s.calificacion}</td>
-						<td class="text-center"><a
-							class="btn-add btn btn-primary btn-sm" href="sesion"><i
-								class="fas fa-plus"></i></a> <a
-							class="btn-edit btn btn-warning btn-sm" href="sesion?id=${s.id}"><i
-								class="far fa-edit"></i></a> <a
-							class="btn-del btn btn-danger btn-sm" href="#"><i
-								class="far fa-trash-alt"></i></a></td>
+						<td class="text-center">
+							<a class="btn-add btn btn-primary btn-sm" href="add_sesion"><i class="fas fa-plus"></i></a>
+							<a class="btn-edit btn btn-warning btn-sm" href="sesion?id=${s.id}"><i class="far fa-edit"></i></a>
+							<a class="btn-del btn btn-danger btn-sm" href="#"><i class="far fa-trash-alt"></i></a>
+						</td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -65,14 +67,9 @@
 			</tfoot>
 		</table>
 
-		<!-- <a class="btn btn-primary" href="admin/clientes?op=agregar">Añadir Sesión</a> -->
-		<a class="btn-add btn btn-primary btn-sm"
-			href="admin/clientes?op=agregar"><i class="fas fa-plus"></i>
-			Añadir Cliente</a> <a class="btn-add btn btn-primary btn-sm"
-			href="admin/clientes?op=agregar"><i class="fas fa-plus"></i>
-			Añadir Trabajador</a> <a class="btn-add btn btn-primary btn-sm"
-			href="admin/clientes?op=agregar"><i class="fas fa-plus"></i>
-			Añadir Servicio</a>
+		<!-- <a class="btn-add btn btn-primary btn-sm" href="admin/clientes?op=agregar"><i class="fas fa-plus"></i> Añadir Cliente</a> 
+		<a class="btn-add btn btn-primary btn-sm" href="admin/clientes?op=agregar"><i class="fas fa-plus"></i> Añadir Trabajador</a> 
+		<a class="btn-add btn btn-primary btn-sm" href="admin/clientes?op=agregar"><i class="fas fa-plus"></i> Añadir Servicio</a> -->
 
 	</section>
 </div>

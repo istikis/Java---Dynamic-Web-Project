@@ -13,7 +13,7 @@ public class AdminClienteController extends HttpServlet {
   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.setAttribute("clientes", Globales.daoCliente.obtenerTodos());
+		request.setAttribute("clientes", Globales.daoCliente.getAll());
 		request.getRequestDispatcher("/WEB-INF/vistas/admin/cliente.jsp").forward(request, response);
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
