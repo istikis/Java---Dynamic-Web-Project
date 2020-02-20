@@ -3,12 +3,15 @@
 <%@ include file="/WEB-INF/vistas/layout/head.jsp" %>
 
 <div class="row">
+
+	<%@ include file="/WEB-INF/vistas/layout/menu_admin.jsp"%>
+	
 	<form action="sesion" method="post"
 		class="offset-xl-3 offset-md-2 offset-sm-1 col-sm-10 col-md-8 col-xl-6">
 		<fieldset>
 			<legend>Sesión</legend>
 
-			<div class="form-group row">
+			<%-- <div class="form-group row">
 				<label for="id" class="col-sm-2 col-form-label">Id</label>
 				<div class="col-sm-10">
 					<input type="number" class="form-control" id="id" name="id"
@@ -95,7 +98,7 @@
 							repetir</option>
 					</select>
 					<div class="invalid-feedback">${sesion.errorCalificacion}</div>
-				</div>
+				</div> --%>
 			</div>
 			<div class="form-group row">
 				<div class="offset-sm-2 col-sm-10">

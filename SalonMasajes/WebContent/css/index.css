@@ -2,7 +2,8 @@
 
 body {
 	font-family: 'Neucha', cursive;
-	background: #CCDEE3;
+	/* background: #CCDEE3; */
+	background:#C5C6C7;
 	height: 100%;
 	width: 100%;
 }
@@ -12,6 +13,10 @@ main {
 }
 h1, h2, h3 {
 	color: #3b4652;
+}
+
+h3 {
+	text-shadow: 1px 1px 1px black, 0 0 0.2em white;
 }
 
 i {
@@ -87,15 +92,23 @@ input[type="radio"]:checked ~ label {
 
 /*Panel Administración*/
 
+.section-panel{
+
+}
+
 .div-menu{
 	height: 600px;
 }
-.section-panel{
-	background: #7AA6CC;
-}
 
 .menu-admin{
-	height: 100%;	
+	height: 100%;
+	background:#f8f9fa;
+	border-radius:1em;
+ 
+-webkit-box-shadow: 5px 5px 4px 0px rgba(0,0,0,0.25);
+-moz-box-shadow: 5px 5px 4px 0px rgba(0,0,0,0.25);
+box-shadow: 5px 5px 4px 0px rgba(0,0,0,0.25);
+	
 }
 
 .menu-admin li {
@@ -106,41 +119,58 @@ input[type="radio"]:checked ~ label {
 
 .menu-admin li a{
 	text-align: center;
-	color: #3b4652;
+	color: #7c7c7d; 
 	font-family: inherit;
-	font-size: 1.2em;
+	font-size: 1.3em;
 }
 
 .icono-panel {
-	color: #3b4652;
+	color: #7c7c7d;
 	font-size: 50px;
 	margin-top: 20px;
+	text-shadow: 1px 1px 2px black, 0 0 0.2em white;
 }
 
 .dataTables_wrapper {
- font-size: 1em;	
+ font-size: 1em;
+ background:#f8f9fa;
+ padding:15px;
+ border-radius:1em;
+ 
+-webkit-box-shadow: 5px 5px 4px 0px rgba(0,0,0,0.25);
+-moz-box-shadow: 5px 5px 4px 0px rgba(0,0,0,0.25);
+box-shadow: 5px 5px 4px 0px rgba(0,0,0,0.25);	
+}
+
+.page-item.active .page-link {
+	background: #7c7c7d;
+	border-color: #BFBED4;
 }
 
 .head-tabla, .foot-tabla{
-	background: #7AA6CC;
+	background:#C5C6C7;
 }
 
 .btn-add {
-	background: #7AA6CC;
+	/* background: #7AA6CC; */
+	background: #7c7c7d;
+	border-color: #BFBED4;
 }
 
 .btn-edit {
 	background: #DFE668;
+	color: white;
 }
 
 .btn-del {
-	background: #AB1C00;
+	background: #FF2510;
+	color: white;
 }
 
 /*Footer*/
 
 footer p {
-	color: #3b4652;	
+	color: #3b4652;
 }
 
 .redes-sociales {
@@ -149,7 +179,7 @@ footer p {
 
 .redes {
 	font-size:35px;
-	color:#7AA6CC;
+	color: #7c7c7d;
 }
 
 @media (min-width: 1200px) {

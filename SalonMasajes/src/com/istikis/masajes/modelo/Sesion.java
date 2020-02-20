@@ -21,6 +21,7 @@ public class Sesion {
 
 	public Sesion(String id, String cliente, String trabajador, String servicio, String fecha, String resena,
 			String calificacion) {
+		
 		setId(id);
 		setCliente(cliente);
 		setTrabajador(trabajador);

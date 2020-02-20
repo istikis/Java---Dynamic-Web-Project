@@ -4,10 +4,12 @@
 
 <div class="row">
 
+	<%@ include file="/WEB-INF/vistas/layout/menu_admin.jsp"%>
+	
 	<form 
 		action="admin/add_trabajador" 
 		method="post"
-		class="offset-xl-3 offset-md-2 offset-sm-1 col-sm-10 col-md-8 col-xl-6">
+		class="col col-sm-6 offset-sm-1 mt-4">
 		
 		<fieldset>
 		
@@ -69,7 +71,7 @@
 			</div>
 			<div class="form-group row">
 				<div class="offset-sm-2 col-sm-10">
-					<button type="submit" class="btn btn-primary">Añadir</button>
+					<button type="submit" class="btn btn-secondary">Añadir Trabajador</button>
 				</div>
 			</div>
 			

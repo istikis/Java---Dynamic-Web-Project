@@ -4,11 +4,16 @@
 
 
 <div class="div-menu row">
-	<section class="section-panel col col-sm-2">
-		<%@ include file="/WEB-INF/vistas/layout/menu_admin.jsp"%>
-	</section>
-	<section  class="container col col-sm-8 mt-4 justify-content-center" id="trabajadores">
-<h3 class="mb-4">Tabla Trabajadores</h3>
+	
+	<%@ include file="/WEB-INF/vistas/layout/menu_admin.jsp"%>
+	
+	<section  
+		class="container col col-sm-8 mt-4 justify-content-center" 
+		id="trabajadores"
+		>
+		
+	<h3 class="mb-4">Tabla Trabajadores</h3>
+	
 	<table
 		class="table table-striped table-bordered table-hover table-sm table-responsive-xl">
 		<thead class="head-tabla">
@@ -37,7 +42,7 @@
 		</tbody>
 	</table>
 
-	<a class="btn btn-primary" href="admin/add_trabajador?op=agregar"><span><i class="fas fa-plus"></i></span> Añadir</a>
+	<a class="btn btn-secondary mt-3" href="admin/add_trabajador?op=agregar"><span><i class="fas fa-plus"></i></span> Añadir</a>
 
 </section>
 </div>

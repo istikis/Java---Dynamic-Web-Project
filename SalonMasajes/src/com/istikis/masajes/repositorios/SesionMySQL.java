@@ -1,8 +1,6 @@
 package com.istikis.masajes.repositorios;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -10,7 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Properties;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -31,6 +28,8 @@ public class SesionMySQL implements Dao<Sesion> {
 			+ "JOIN servicios s ON s.idservicios = ses.servicios_idservicios;";
 	
 	private static final String SQL_GET_ID = "SELECT * FROM sesiones WHERE id=?";
+	
+	private static final String SQL_DELETE = "CALL sesionesDelete(?)";
 	
 	private static String url, usuario, password;
 	private static DataSource pool;
@@ -260,7 +259,21 @@ public class SesionMySQL implements Dao<Sesion> {
 
 	@Override
 	public void delete(Integer id) {
-		throw new UnsupportedOperationException("NO ESTA IMPLEMENTADO");
+		try (Connection con = getConexion()) {
+			try(CallableStatement s = con.prepareCall(SQL_DELETE)) {
+				
+				s.setLong(1, id);
+				
+				int numeroRegistrosModificados = s.executeUpdate();
+				
+				if(numeroRegistrosModificados != 1) {
+					throw new AccesoDatosException("Se ha hecho más o menos de una delete");
+				}
+			}
+		} catch (SQLException e) {
+			throw new AccesoDatosException("Error al borrar el cliente", e);
+		}
+		//throw new UnsupportedOperationException("NO ESTA IMPLEMENTADO");
 		
 	}
 

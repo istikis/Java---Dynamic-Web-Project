@@ -1,16 +1,11 @@
 package com.istikis.masajes.repositorios;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Properties;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -30,9 +25,9 @@ public class ClienteMySQL implements Dao<Cliente>{
 
 	private static final String SQL_INSERT = "CALL clientesInsert(?,?,?,?)";
 	
-	private static final String SQL_UPDATE = null;
+	private static final String SQL_UPDATE = "CALL clientesUpdate(?,?,?,?)";
 
-	private static final String SQL_DELETE = null;
+	private static final String SQL_DELETE = "CALL clientesDelete(?)";
 	
 	private static String url, usuario, password;
 	
@@ -215,14 +210,14 @@ public class ClienteMySQL implements Dao<Cliente>{
 	@Override
 	public void update(Cliente cliente) {
 		try (Connection con = getConexion()) {
-			try(PreparedStatement ps = con.prepareStatement(SQL_UPDATE)) {
+			try(CallableStatement s = con.prepareCall(SQL_UPDATE)) {
 				
-				ps.setString(1, cliente.getNombre());
-				ps.setString(2, cliente.getApellidos());
-				ps.setString(3, cliente.getDni());
-				ps.setLong(4, cliente.getId());
+				s.setInt(1, cliente.getId());
+				s.setString(2, cliente.getNombre());
+				s.setString(3, cliente.getApellidos());
+				s.setString(4, cliente.getDni());
 				
-				int numeroRegistrosModificados = ps.executeUpdate();
+				int numeroRegistrosModificados = s.executeUpdate();
 				
 				if(numeroRegistrosModificados != 1) {
 					throw new AccesoDatosException("Se ha hecho más o menos de una update");
@@ -237,11 +232,11 @@ public class ClienteMySQL implements Dao<Cliente>{
 	@Override
 	public void delete(Integer id) {
 		try (Connection con = getConexion()) {
-			try(PreparedStatement ps = con.prepareStatement(SQL_DELETE)) {
+			try(CallableStatement s = con.prepareCall(SQL_DELETE)) {
 				
-				ps.setLong(1, id);
+				s.setLong(1, id);
 				
-				int numeroRegistrosModificados = ps.executeUpdate();
+				int numeroRegistrosModificados = s.executeUpdate();
 				
 				if(numeroRegistrosModificados != 1) {
 					throw new AccesoDatosException("Se ha hecho más o menos de una delete");
