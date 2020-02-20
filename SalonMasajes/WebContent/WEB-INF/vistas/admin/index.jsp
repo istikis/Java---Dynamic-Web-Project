@@ -49,7 +49,7 @@
 						</td>
 						<td>${s.calificacion}</td>
 						<td class="text-center">
-							<a class="btn-add btn btn-primary btn-sm" href="admin/add_sesion?op=agregar"><i class="fas fa-plus"></i></a>
+							<a class="btn-add btn btn-primary btn-sm" href="admin/add_sesion?id=${s.id}"><i class="fas fa-plus"></i></a>
 							<a class="btn-edit btn btn-warning btn-sm" href="admin/add_sesion?id=${s.id}&op=modificar"><i class="far fa-edit"></i></a>
 							<a class="btn-del btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro?')" href="admin/borrarsesion?id=${s.id}"><i class="far fa-trash-alt"></i></a>
 						</td>

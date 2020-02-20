@@ -16,13 +16,12 @@ import com.istikis.masajes.modelo.Sesion;
 
 @WebServlet("/admin/add_sesion")
 public class AdminSesionCreate extends HttpServlet {
-	private static final String SESION_CREATE_JSP = "/WEB-INF/vistas/sesionCreate.jsp";
+	private static final String SESION_CREATE_JSP = "/WEB-INF/vistas/admin/sesionCreate.jsp";
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String id = request.getParameter("id");
-		String op = request.getParameter("op");
 		
 		if(id != null) {
 			
