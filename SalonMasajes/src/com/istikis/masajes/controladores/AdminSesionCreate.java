@@ -21,18 +21,26 @@ public class AdminSesionCreate extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String id = request.getParameter("id");
-		
-		if(id != null) {
+		try {
 			
-			Integer idInteger = new Integer(id);
-			Sesion sesion =  Globales.daoSesion.getById(idInteger);
-			request.setAttribute("sesion", sesion);
+			String id = request.getParameter("id");
 			
+			if(id != null) {
+				
+				Integer idInteger = new Integer(id);
+				Sesion sesion =  Globales.daoSesion.getById(idInteger);
+				request.setAttribute("sesion", sesion);
+			}
 			contenidoDesplegables(request);
-			
 			request.getRequestDispatcher(SESION_CREATE_JSP).forward(request, response);
 			
+		} catch (Exception e) {
+			request.setAttribute("alertatexto", e.getMessage());
+			request.setAttribute("alertanivel", "danger");
+
+			e.printStackTrace();
+
+			request.getRequestDispatcher(SESION_CREATE_JSP).forward(request, response);
 		}
 	}
 	
@@ -82,7 +90,8 @@ public class AdminSesionCreate extends HttpServlet {
 				Globales.daoSesion.update(sesion);;
 			}
 
-			response.sendRedirect(request.getContextPath() + "/");
+			response.sendRedirect(request.getContextPath() + "/admin/index");
+			//response.sendRedirect("trabajadores");
 
 		} catch (Exception e) {
 			session.setAttribute("alertatexto", e.getMessage());

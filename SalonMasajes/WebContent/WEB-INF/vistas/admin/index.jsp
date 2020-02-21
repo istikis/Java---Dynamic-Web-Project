@@ -65,18 +65,10 @@
 					<th>Fecha</th>
 					<th>Reseña</th>
 					<th>Calificación</th>
-					<th class="text-center"><a href="sesion"
-						class="btn-add btn btn-primary btn-sm"><span> <i
-								class="fas fa-plus"></i>
-						</span> Añadir</a></th>
+					<th></th>
 				</tr>
 			</tfoot>
 		</table>
-
-		<!-- <a class="btn-add btn btn-primary btn-sm" href="admin/clientes?op=agregar"><i class="fas fa-plus"></i> Añadir Cliente</a> 
-		<a class="btn-add btn btn-primary btn-sm" href="admin/clientes?op=agregar"><i class="fas fa-plus"></i> Añadir Trabajador</a> 
-		<a class="btn-add btn btn-primary btn-sm" href="admin/clientes?op=agregar"><i class="fas fa-plus"></i> Añadir Servicio</a> -->
-
 	</section>
 </div>
 

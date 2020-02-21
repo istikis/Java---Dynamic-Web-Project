@@ -6,9 +6,13 @@
 
 	<%@ include file="/WEB-INF/vistas/layout/menu_admin.jsp"%>
 	
-	<form action="sesion" method="post"
-		class="col col-sm-6 offset-sm-1 mt-4">
+	<form 
+		action="admin/add_sesion" 
+		method="post"
+		class="col col-sm-6 offset-sm-1">
+		
 		<fieldset>
+		
 			<legend>Sesión</legend>
 
 			<div class="form-group row">
@@ -27,7 +31,7 @@
 						id="cliente" name="cliente">
 						<option disabled selected value="">Selecciona un cliente</option>
 						<c:forEach items="${clientes}" var="cliente">
-							<option<%--  ${cliente.id == sesion.cliente.id ? 'selected': '' } --%> value="${cliente.id}">${cliente.nombre} ${cliente.apellidos}</option>
+							<option ${cliente.id == sesion.cliente.id ? 'selected': '' } value="${cliente.id}">${cliente.nombre} ${cliente.apellidos}</option>
 						</c:forEach>
 					</select>
 					<div class="invalid-feedback">${sesion.errorCliente}</div>
@@ -38,11 +42,11 @@
 				<label for="trabajador" class="col-sm-2 col-form-label">Trabajador</label>
 				<div class="col-sm-10">
 					<select
-						class="form-control<%--  ${sesion != null ? (sesion.errorTrabajador == null ? 'is-valid' : 'is-invalid') : '' } --%>"
+						class="form-control ${sesion != null ? (sesion.errorTrabajador == null ? 'is-valid' : 'is-invalid') : '' }"
 						id="trabajador" name="trabajador">
 						<option disabled selected value="">Selecciona un trabajador</option>
 						<c:forEach items="${trabajadores}" var="trabajador">
-							<option <%-- ${trabajador.id == sesion.trabajador.id ? 'selected': '' } --%> value="${trabajador.id}">${trabajador.nombre} ${trabajador.apellidos}</option>
+							<option  ${trabajador.id == sesion.trabajador.id ? 'selected': '' } value="${trabajador.id}">${trabajador.nombre} ${trabajador.apellidos}</option>
 						</c:forEach>
 					</select>
 					<div class="invalid-feedback">${sesion.errorTrabajador}</div>
@@ -53,11 +57,11 @@
 				<label for="servicio" class="col-sm-2 col-form-label">Servicio</label>
 				<div class="col-sm-10">
 					<select
-						class="form-control<%--  ${sesion != null ? (sesion.errorServicio == null ? 'is-valid' : 'is-invalid') : '' } --%>"
+						class="form-control  ${sesion != null ? (sesion.errorServicio == null ? 'is-valid' : 'is-invalid') : '' }"
 						id="servicio" name="servicio">
 						<option disabled selected value="">Selecciona un servicio</option>
 						<c:forEach items="${servicios}" var="servicio">
-							<option <%-- ${servicio.id == sesion.servicio.id ? 'selected': '' } --%> value="${servicio.id}">${servicio.nombre}</option>
+							<option ${servicio.id == sesion.servicio.id ? 'selected': '' } value="${servicio.id}">${servicio.nombre}</option>
 						</c:forEach>
 					</select>
 					<div class="invalid-feedback">${sesion.errorServicio}</div>
@@ -90,12 +94,9 @@
 						class="form-control ${sesion != null ? (sesion.errorCalificacion == null ? 'is-valid' : 'is-invalid') : '' }"
 						id="calificacion" name="calificacion">
 						<option selected value="">No ha calificado</option>
-						<option
-							${sesion.calificacion == 'No recomendable' ? 'selected': '' }>No
-							recomendable</option>
+						<option	${sesion.calificacion == 'No recomendable' ? 'selected': '' }>No recomendable</option>
 						<option ${sesion.calificacion == 'Aceptable' ? 'selected': '' }>Aceptable</option>
-						<option ${sesion.calificacion == 'Para repetir' ? 'selected': '' }>Para
-							repetir</option>
+						<option ${sesion.calificacion == 'Para repetir' ? 'selected': '' }>Para repetir</option>
 					</select>
 					<div class="invalid-feedback">${sesion.errorCalificacion}</div>
 				</div>

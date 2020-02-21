@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import javax.naming.Context;
@@ -28,6 +29,8 @@ public class SesionMySQL implements Dao<Sesion> {
 			+ "JOIN servicios s ON s.idservicios = ses.servicios_idservicios;";
 	
 	private static final String SQL_GET_ID = "SELECT * FROM sesiones WHERE id=?";
+	
+	private static final String SQL_INSERT = "CALL sesionesInsert(?,?,?,?,?,?,?,?)";
 	
 	private static final String SQL_DELETE = "CALL sesionesDelete(?)";
 	
@@ -247,8 +250,33 @@ public class SesionMySQL implements Dao<Sesion> {
 
 	@Override
 	public Integer insert(Sesion sesion) {
-		throw new UnsupportedOperationException("NO ESTA IMPLEMENTADO");
-		
+		try (Connection con = getConexion()) {
+			try (CallableStatement s = con.prepareCall(SQL_INSERT)) {
+				
+				s.setInt(1, sesion.getId());
+				s.setInt(2, sesion.getCliente().getId());
+				s.setInt(3, sesion.getTrabajador().getId());
+				s.setInt(4, sesion.getServicio().getId());
+				s.setTimestamp(5, new Timestamp(sesion.getFecha().getTime()));
+				s.setString(6, sesion.getResena());
+				s.setString(7, sesion.getCalificacion());
+
+				s.registerOutParameter(8, java.sql.Types.INTEGER);
+
+				int numeroRegistrosModificados = s.executeUpdate();
+
+				if (numeroRegistrosModificados != 1) {
+					throw new RepositoriosException("Número de registros modificados: " + numeroRegistrosModificados);
+				}
+				
+				return s.getInt(8); // atento a este que era void
+
+			} catch (SQLException e) {
+				throw new RepositoriosException("Error al crear la sentencia (Insert)", e);
+			}
+		} catch (SQLException e) {
+			throw new RepositoriosException("Error al conectar", e);
+		}	
 	}
 
 	@Override
