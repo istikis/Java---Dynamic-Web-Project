@@ -35,7 +35,7 @@
 	<!-- Font Awesome -->
 	<script src="https://kit.fontawesome.com/d4a3f3b590.js"	crossorigin="anonymous"></script>
 	<!-- Google Font (Neucha) -->
-	<link href="https://fonts.googleapis.com/css?family=Neucha&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Dosis:300&display=swap" rel="stylesheet"> 
 
 	<script>
 		$(document).ready(function() {

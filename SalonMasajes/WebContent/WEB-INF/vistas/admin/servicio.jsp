@@ -10,7 +10,7 @@
 
 <h3 class="mb-4">Tabla Servicios</h3>
 	 <table
-		class="table table-striped table-bordered table-hover table-sm table-responsive-xl" >
+		class="table table-striped table-borderless table-hover table-sm table-responsive-xl" >
 		<thead class="head-tabla">
 			<tr>
 				<th>Id</th>
@@ -33,6 +33,14 @@
 				</tr>
 			</c:forEach>
 		</tbody>
+		<tfoot class="foot-tabla">
+				<tr>
+					<th>Id</th>
+					<th>Nombre</th>
+					<th>Precio</th>
+					<th></th>
+				</tr>
+		</tfoot>
 	</table> 
 
 	<a class="btn btn-secondary mt-3" href="admin/add_servicio?op=agregar"><span><i class="fas fa-plus"></i></span> Nuevo Servicio</a>

@@ -8,12 +8,12 @@
 	<%@ include file="/WEB-INF/vistas/layout/menu_admin.jsp"%>
 	
 	<section 
-		class="container col col-sm-10 mt-4 justify-content-center"
+		class="container col col-sm-9 mt-4 justify-content-center"
 		id="sesion">
 		
 		<h3>Sesiones</h3>
 		
-		<table class="table table-striped table-bordered table-hover table-sm table-responsive-xl">
+		<table class="table table-striped table-borderless table-hover table-sm table-responsive-xl">
 			
 			<thead class="head-tabla">
 				<tr>

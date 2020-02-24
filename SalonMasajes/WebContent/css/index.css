@@ -1,9 +1,8 @@
 @charset "UTF-8";
 
 body {
-	font-family: 'Neucha', cursive;
-	/* background: #CCDEE3; */
-	background:#C5C6C7;
+	font-family: 'Dosis';
+	background: #343740;
 	height: 100%;
 	width: 100%;
 }
@@ -11,12 +10,12 @@ body {
 main {
 	padding-botton: 4em;
 }
-h1, h2, h3 {
-	color: #3b4652;
+h1, h2, h3, legend {
+	color: #7c7c7d; 
 }
 
-h3 {
-	text-shadow: 1px 1px 1px black, 0 0 0.2em white;
+h3, legend {
+	text-shadow: 1px 1px 1px black, 0 0 1px white;
 }
 
 i {
@@ -45,46 +44,6 @@ i {
 	margin-top: 30px;
 
 }
-/* Valoración estrellas*/
-
-.form-valor {
-  width: 250px;
-  margin: 0 auto;
-  height: 50px;
-}
-
-.form-valor p {
-  text-align: left;
-  padding-top: 5px;
-}
-
-.form-valor label {
-  font-size: 20px;
-}
-
-input[type="radio"] {
-  display: none;
-}
-
-label {
-  color: grey;
-}
-
-.clasificacion {
-  direction: rtl;
-  unicode-bidi: bidi-override;
-}
-
-label:hover,
-label:hover ~ label {
-  color: orange;
-}
-
-input[type="radio"]:checked ~ label {
-  color: orange;
-}
-
-/* Fin Valoración estrellas*/
 
 #logo {
 	width: 2.2em;
@@ -93,7 +52,7 @@ input[type="radio"]:checked ~ label {
 /*Panel Administración*/
 
 .section-panel{
-
+	background:#2a2d35;
 }
 
 .div-menu{
@@ -102,24 +61,21 @@ input[type="radio"]:checked ~ label {
 
 .menu-admin{
 	height: 100%;
-	background:#f8f9fa;
-	border-radius:1em;
- 
--webkit-box-shadow: 5px 5px 4px 0px rgba(0,0,0,0.25);
--moz-box-shadow: 5px 5px 4px 0px rgba(0,0,0,0.25);
-box-shadow: 5px 5px 4px 0px rgba(0,0,0,0.25);
 	
+}
+
+.menu-admin a:hover {
+	color: #f6a821;	
 }
 
 .menu-admin li {
 	text-align: center;
-	color: #3b4652;
 	font-family: inherit;
 }
 
 .menu-admin li a{
 	text-align: center;
-	color: #7c7c7d; 
+	color: #7c7c7d;
 	font-family: inherit;
 	font-size: 1.3em;
 }
@@ -128,11 +84,12 @@ box-shadow: 5px 5px 4px 0px rgba(0,0,0,0.25);
 	color: #7c7c7d;
 	font-size: 50px;
 	margin-top: 20px;
-	text-shadow: 1px 1px 2px black, 0 0 0.2em white;
+	text-shadow: 1px 1px 1px black, 0 0 1px white;
 }
 
 form {
-	background:#f8f9fa;
+	color: #f6a821;
+	background: #2a2d35;
 	margin-top: 2em;
 	padding-top: 1em;
 	border-radius:1em;
@@ -141,9 +98,32 @@ form {
 -moz-box-shadow: 5px 5px 4px 0px rgba(0,0,0,0.25);
 box-shadow: 5px 5px 4px 0px rgba(0,0,0,0.25);
 }
+
+.form-control {
+	color: #7c7c7d;
+	background:	#343740;
+	border-color: #343740;
+}
+
+.page-item.disabled .page-link, .page-item.active .page-link {
+	color: #7c7c7d;
+	background:	#343740;
+	border-color: #343740;
+}
+
+.table, .dataTables_info {
+	/* color: #7c7c7d; */	
+	color: #f6a821;	
+} 
+
+.table-hover tbody tr:hover{
+	color: #7c7c7d;;
+}
+
 .dataTables_wrapper {
  font-size: 1em;
- background:#f8f9fa;
+ background: #2a2d35;
+ color: #f6a821;
  padding:15px;
  border-radius:1em;
  
@@ -153,34 +133,41 @@ box-shadow: 5px 5px 4px 0px rgba(0,0,0,0.25);
 }
 
 .page-item.active .page-link {
-	background: #7c7c7d;
-	border-color: #BFBED4;
+	background: #2a2d35;
+	border-color: #7c7c7d;
 }
 
 .head-tabla, .foot-tabla{
-	background:#C5C6C7;
+	background: #343740;
+	color: #7c7c7d;;
 }
 
 .btn-add {
-	/* background: #7AA6CC; */
-	background: #7c7c7d;
-	border-color: #BFBED4;
+	color: #7c7c7d;
+	background: #343740;
+	border-color: #343740;
+}
+
+.btn-primary:hover {
+	color: #343740;
+	background: #343740;
+	border-color: #343740;
 }
 
 .btn-edit {
-	background: #DFE668;
-	color: white;
+	background: #E6D690;
+	color: #7c7c7d;
 }
 
 .btn-del {
-	background: #FF2510;
-	color: white;
+	background: #de9536;
+	color: #7c7c7d;
 }
 
 /*Footer*/
 
 footer p {
-	color: #3b4652;
+	color: #343740;
 }
 
 .redes-sociales {
@@ -189,7 +176,7 @@ footer p {
 
 .redes {
 	font-size:35px;
-	color: #7c7c7d;
+	color: #343740;
 }
 
 @media (min-width: 1200px) {

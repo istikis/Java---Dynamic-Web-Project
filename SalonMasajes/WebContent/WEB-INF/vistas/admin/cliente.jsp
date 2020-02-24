@@ -11,7 +11,7 @@
 		<h3 class="mb-4">Tabla Clientes</h3>
 		
 			<table
-				class="table table-striped table-bordered table-hover table-sm table-responsive-xl">
+				class="table table-striped table-borderless table-hover table-sm table-responsive-xl">
 				<thead class="head-tabla">
 					<tr>
 						<th>Id</th>
