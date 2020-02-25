@@ -35,8 +35,14 @@ i {
 	color: #3b4652;
 }
 
+.nav-menu {
+	padding: 3px;
+	background: #2a2d35;
+}
+
 .nav-menu li a {
 	font-size: 1.2em;
+	color: #f6a821;
 }
 
 .masaje h3 {
@@ -47,6 +53,7 @@ i {
 
 #logo {
 	width: 2.2em;
+	padding-left: 10px;
 }
 
 /*Panel Administración*/
@@ -142,7 +149,7 @@ box-shadow: 5px 5px 4px 0px rgba(0,0,0,0.25);
 	color: #7c7c7d;;
 }
 
-.btn-add {
+.btn-add, .btn-edit, .btn-del {
 	color: #7c7c7d;
 	background: #343740;
 	border-color: #343740;
@@ -150,33 +157,27 @@ box-shadow: 5px 5px 4px 0px rgba(0,0,0,0.25);
 
 .btn-primary:hover {
 	color: #343740;
-	background: #343740;
+	background: #7c7c7d;
 	border-color: #343740;
-}
-
-.btn-edit {
-	background: #E6D690;
-	color: #7c7c7d;
-}
-
-.btn-del {
-	background: #de9536;
-	color: #7c7c7d;
 }
 
 /*Footer*/
 
+footer {
+	background: #2a2d35;	
+}
+
 footer p {
-	color: #343740;
+	color: #7c7c7d;
 }
 
 .redes-sociales {
-	font-size: 2em;
+	/* font-size: 2em; */
 }
 
 .redes {
 	font-size:35px;
-	color: #343740;
+	color: #f6a821;
 }
 
 @media (min-width: 1200px) {

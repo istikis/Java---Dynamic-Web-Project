@@ -50,7 +50,7 @@
 <body>
 
 	<!-- Navegador -->
-	<nav class="nav-menu navbar navbar-expand-lg navbar-light bg-light sticky-top">
+	<nav class="nav-menu navbar navbar-expand-lg  sticky-top">
 		<a class="navbar-brand" href="vistas/index.jsp"><img id="logo" src="img/logo.png" alt="logo"></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarSupportedContent"
