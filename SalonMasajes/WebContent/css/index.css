@@ -28,6 +28,8 @@ i {
 
 .masaje {
 	padding: 0;
+	background: #2a2d35;
+	color: #7c7c7d;
 
 }
 .masaje a {
@@ -38,11 +40,13 @@ i {
 .nav-menu {
 	padding: 3px;
 	background: #2a2d35;
+	border-bottom: 1px solid #3b4652;
 }
 
 .nav-menu li a {
 	font-size: 1.2em;
-	color: #f6a821;
+	/* color: #f6a821; */
+	color: #2b79c2;
 }
 
 .masaje h3 {
@@ -68,11 +72,12 @@ i {
 
 .menu-admin{
 	height: 100%;
-	
+		
 }
 
 .menu-admin a:hover {
-	color: #f6a821;	
+	/* color: #f6a821; */	
+	color: #2b79c2;
 }
 
 .menu-admin li {
@@ -95,7 +100,8 @@ i {
 }
 
 form {
-	color: #f6a821;
+/* 	color: #f6a821; */
+	color: #2b79c2;
 	background: #2a2d35;
 	margin-top: 2em;
 	padding-top: 1em;
@@ -119,8 +125,8 @@ box-shadow: 5px 5px 4px 0px rgba(0,0,0,0.25);
 }
 
 .table, .dataTables_info {
-	/* color: #7c7c7d; */	
-	color: #f6a821;	
+/* 	color: #f6a821;	 */
+	color: #2b79c2;	
 } 
 
 .table-hover tbody tr:hover{
@@ -130,7 +136,8 @@ box-shadow: 5px 5px 4px 0px rgba(0,0,0,0.25);
 .dataTables_wrapper {
  font-size: 1em;
  background: #2a2d35;
- color: #f6a821;
+ /* color: #f6a821; */
+ color: #2b79c2;
  padding:15px;
  border-radius:1em;
  
@@ -164,11 +171,15 @@ box-shadow: 5px 5px 4px 0px rgba(0,0,0,0.25);
 /*Footer*/
 
 footer {
-	background: #2a2d35;	
+	background: #2a2d35;
+	padding: 5px;
+	margin: 0 auto;
+	text-align: center;	
 }
 
 footer p {
 	color: #7c7c7d;
+	margin: 0 auto;
 }
 
 .redes-sociales {
@@ -177,7 +188,9 @@ footer p {
 
 .redes {
 	font-size:35px;
-	color: #f6a821;
+	/* color: #f6a821; */
+	color: #2b79c2;
+	margin:0 3px;
 }
 
 @media (min-width: 1200px) {
