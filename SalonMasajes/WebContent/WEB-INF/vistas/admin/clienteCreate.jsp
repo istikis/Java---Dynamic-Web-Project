@@ -70,7 +70,7 @@
 						
 			<div class="form-group row">
 				<div class="offset-sm-2 col-sm-10 mt-3">
-					<button type="submit" class="btn btn-secondary">Añadir Cliente</button>
+					<button type="submit" class="btn btn-secondary">Aceptar</button>
 				</div>
 			</div>
 			

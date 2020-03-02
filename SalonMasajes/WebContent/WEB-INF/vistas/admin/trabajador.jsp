@@ -50,9 +50,6 @@
 				</tr>
 			</tfoot>
 	</table>
-
-	<a class="btn btn-secondary mt-3" href="admin/add_trabajador?op=agregar"><span><i class="fas fa-plus"></i></span> Añadir</a>
-
 </section>
 </div>
 

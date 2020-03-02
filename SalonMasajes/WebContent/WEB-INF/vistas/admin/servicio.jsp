@@ -42,9 +42,6 @@
 				</tr>
 		</tfoot>
 	</table> 
-
-	<a class="btn btn-secondary mt-3" href="admin/add_servicio?op=agregar"><span><i class="fas fa-plus"></i></span> Nuevo Servicio</a>
-
 </section>
 </div>
 

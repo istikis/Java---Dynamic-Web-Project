@@ -37,9 +37,6 @@
 					</c:forEach>
 				</tbody>
 			</table>
-		
-			<a class="btn-add btn btn-primary" href="admin/add_cliente?op=agregar"><span><i class="fas fa-plus"></i></span> Añadir</a>
-		
 	</section>
 </div>
 

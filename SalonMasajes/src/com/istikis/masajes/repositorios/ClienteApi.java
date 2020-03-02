@@ -23,8 +23,8 @@ public class ClienteApi extends HttpServlet {
 
 	static {
 		clientes.put(1, new Cliente(1, "Rodrigo", "Soto Cid", "79224857T"));
-		clientes.put(2, new Cliente(1, "Camila", "Tapia Guajardo", "15887542C"));
-		clientes.put(3, new Cliente("Guillermo", "Mexico Lindo", "22554488M"));
+		clientes.put(2, new Cliente(2, "Camila", "Tapia Guajardo", "15887542C"));
+		clientes.put(3, new Cliente(3,"Guillermo", "Mexico Lindo", "22554488M"));
 	}
 
 	private static Gson gson = new Gson();
@@ -94,6 +94,7 @@ public class ClienteApi extends HttpServlet {
 
 		try {
 			id = extraerId(request);
+			
 			if (id == null) {
 				throw new Exception();
 			}
@@ -101,6 +102,7 @@ public class ClienteApi extends HttpServlet {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			return;
 		}
+		
 		if (id != cliente.getId()) {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			return;
@@ -145,7 +147,7 @@ public class ClienteApi extends HttpServlet {
 		return sb.toString();
 	}
 
-	private Integer extraerId(HttpServletRequest request) {
+	private static Integer extraerId(HttpServletRequest request) {
 		String path = request.getPathInfo();
 		
 		if(path == null || path.equals("/")) {
@@ -153,7 +155,7 @@ public class ClienteApi extends HttpServlet {
 			return null;			
 		}
 		
-		if(path.matches(URL_ID_VALIDA)) {
+		if(!path.matches(URL_ID_VALIDA)) {
 			throw new RuntimeException("URL de petición no válida");
 		}
 		return Integer.parseInt(path.substring(1));			
