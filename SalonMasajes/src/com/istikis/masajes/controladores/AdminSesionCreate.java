@@ -85,9 +85,9 @@ public class AdminSesionCreate extends HttpServlet {
 			}
 			
 			if (id == null || id.trim().length() == 0) {
-				Globales.daoSesion.insert(sesion);;
+				Globales.daoSesion.insert(sesion);
 			} else {
-				Globales.daoSesion.update(sesion);;
+				Globales.daoSesion.update(sesion);
 			}
 
 			response.sendRedirect(request.getContextPath() + "/admin/index");
@@ -99,7 +99,7 @@ public class AdminSesionCreate extends HttpServlet {
 
 			e.printStackTrace();
 
-			response.sendRedirect("#");
+			response.sendRedirect("index");
 		}
 	}
 

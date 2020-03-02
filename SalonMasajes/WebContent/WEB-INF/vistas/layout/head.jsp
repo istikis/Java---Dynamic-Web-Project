@@ -50,7 +50,7 @@
 <body>
 
 	<!-- Navegador -->
-	<nav class="nav-menu navbar navbar-expand-lg  sticky-top">
+	<nav class="nav-menu navbar navbar-expand-lg sticky-top">
 		<a class="navbar-brand" href="vistas/index.jsp"><img id="logo" src="img/logo.png" alt="logo"></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarSupportedContent"
@@ -61,8 +61,8 @@
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item ml-5"><a class="nav-link" href="vistas/index.jsp"><i class="fas fa-home"></i> Inicio</a></li>
-					<li class="nav-item ml-3"><a class="nav-link" href="admin/index"><i class="fas fa-tools"></i> Panel de Administración</a></li>
+					<li class="nav-item sm-ml-5"><a class="nav-link" href="vistas/index.jsp"><i class="fas fa-home"></i> Inicio</a></li>
+					<li class="nav-item sm-ml-3"><a class="nav-link" href="admin/index"><i class="fas fa-tools"></i> Panel de Administración</a></li>
 				</ul>
 				
 				<c:choose>

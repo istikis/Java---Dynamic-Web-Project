@@ -17,7 +17,7 @@
 			
 			<thead class="head-tabla">
 				<tr>
-					<th>Id ?</th>
+					<th>Id </th>
 					<th>Cliente</th>
 					<th>Trabajador</th>
 					<th>Servicio</th>
@@ -31,7 +31,7 @@
 			<tbody>
 				<c:forEach items="${sesiones}" var="s">
 					<tr>
-						<td>${s.id}</td>
+						<td>${s.id}</td> 	
 						<td>${s.cliente.nombre} ${s.cliente.apellidos}</td>
 						<td>${s.trabajador.nombre} ${s.trabajador.apellidos}</td>
 						<td>${s.servicio.nombre}</td>
@@ -49,8 +49,8 @@
 						</td>
 						<td>${s.calificacion}</td>
 						<td class="text-center">
-							<a class="btn-add btn btn-primary btn-sm" href="admin/add_sesion?id=${s.id}"><i class="fas fa-plus"></i></a>
-							<a class="btn-edit btn btn-warning btn-sm" href="admin/add_sesion?id=${s.id}&op=modificar"><i class="far fa-edit"></i></a>
+							<a class="btn-add btn btn-primary btn-sm" href="admin/add_sesion"><i class="fas fa-plus"></i></a>
+							<a class="btn-edit btn btn-warning btn-sm" href="admin/add_sesion?id=${s.id}"><i class="far fa-edit"></i></a>
 							<a class="btn-del btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro?')" href="admin/borrarsesion?id=${s.id}"><i class="far fa-trash-alt"></i></a>
 						</td>
 					</tr>

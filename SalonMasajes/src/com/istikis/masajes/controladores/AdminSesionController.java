@@ -20,13 +20,12 @@ public class AdminSesionController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 //		String id = request.getParameter("id");
 //		
 //		if(id != null) {
-//			Integer idInteger = new Integer(id);
-//			
-//			Sesion sesion = Globales.daoSesion.getById(idInteger);
-//			
+//			Integer idInteger = new Integer(id);			
+//			Sesion sesion = Globales.daoSesion.getById(idInteger);			
 //			request.setAttribute("sesion", sesion);
 //		}
 //		

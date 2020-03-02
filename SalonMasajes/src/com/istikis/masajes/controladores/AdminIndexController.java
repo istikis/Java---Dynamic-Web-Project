@@ -14,14 +14,10 @@ public class AdminIndexController extends HttpServlet {
   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//Actuaciones sesiones = new Actuaciones(new Cliente(), new Trabajador(), new Servicio(), fecha, resena, calificacion)
-		//request.setAttribute("clientes", Globales.daoCliente.getAll());
-		
 		request.setAttribute("sesiones", Globales.daoSesion.getAll());
 		request.getRequestDispatcher("/WEB-INF/vistas/admin/index.jsp").forward(request, response);
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
-
 }
