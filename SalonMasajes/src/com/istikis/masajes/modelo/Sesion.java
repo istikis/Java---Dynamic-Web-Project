@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 
 public class Sesion {
 	
@@ -13,6 +15,7 @@ public class Sesion {
 	private Trabajador trabajador;
 	private Servicio servicio;
 	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
 	private Date fecha;
 	private String resena, calificacion;
 	

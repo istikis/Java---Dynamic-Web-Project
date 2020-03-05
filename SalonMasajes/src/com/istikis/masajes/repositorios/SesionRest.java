@@ -1,11 +1,22 @@
 package com.istikis.masajes.repositorios;
 
+import java.math.BigDecimal;
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.TreeMap;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response.Status;
 
+import com.istikis.masajes.modelo.Cliente;
+import com.istikis.masajes.modelo.Servicio;
 import com.istikis.masajes.modelo.Sesion;
+import com.istikis.masajes.modelo.Trabajador;
 
 
 @Path("/sesiones")
@@ -16,8 +27,32 @@ public class SesionRest {
 	private static TreeMap<Integer, Sesion> sesiones = new TreeMap<>();
 	
 	static {
-		sesiones.put(1, new Sesion("1","cliente1", "trabajador", "servicio", "2020-12-12", "reseña", "muy bueno"));
-		sesiones.put(2, new Sesion("2","cliente2", "trabajador2", "servicio2", "2020-12-12", "reseña2", "muy bueno2"));
+		
+		Cliente cliente;
+		Trabajador trabajador;
+		Servicio servicio;
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//		String date = "2020-02-02";
+		
+		sesiones.put(1,new Sesion(
+				1, 
+				cliente = new Cliente(1, "Juan", "Clientero", "79224571C"), 
+				trabajador = new Trabajador(1, "Pedro", "Currante", "79224571T"), 
+				servicio = new Servicio(1, "Exfoliación con cactus", new BigDecimal(50.50)), 
+				new GregorianCalendar(1982, 2-1, 17, 23, 00, 44).getTime(), 
+				"El mejor servicio que he recibido en mi vida. Oh My God! jajaja", 
+				"Para repetir"
+				));
+		 
+		sesiones.put(2,new Sesion(
+				2, 
+				cliente = new Cliente(2, "Juana", "Clientera", "79224571C"), 
+				trabajador = new Trabajador(2, "Lupita", "Currante", "79224571T"), 
+				servicio = new Servicio(2, "Masaje", new BigDecimal(60.75)), 
+				new GregorianCalendar(2020, 2-1, 28).getTime(), 
+				"No puede ser que se den servicios tan malos. Mierda de masaje", 
+				"No recomendable"
+				));
 	}
 	
 	@GET
@@ -47,10 +82,18 @@ public class SesionRest {
 			throw new WebApplicationException("No concuerdan los Ids", Status.BAD_REQUEST);			
 		}
 		
-//		if() {
-//			
-//		}
+		if(!sesiones.containsKey(id)) {
+			throw new WebApplicationException("No se ha encontrado el id a modificar", Status.NOT_FOUND);
+		}
 		
-		return null;
+		sesiones.put(id, sesion);
+		return sesion;
+	}
+	
+	@DELETE
+	@Path("/{id}")
+	public String delete(@PathParam("id") Integer id) {
+		sesiones.remove(id);
+		return "{}";
 	}
 }
