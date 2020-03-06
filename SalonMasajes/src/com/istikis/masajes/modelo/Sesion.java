@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 public class Sesion {
@@ -22,6 +23,10 @@ public class Sesion {
 	private boolean correcto = true;
 	private String errorId, errorCliente, errorTrabajador, errorServicio, errorFecha, errorCalificacion, errorResena;
 
+	public Sesion() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public Sesion(String id, String cliente, String trabajador, String servicio, String fecha, String resena,
 			String calificacion) {
 		
@@ -54,6 +59,7 @@ public class Sesion {
 		}
 	}
 
+	
 	private void setTrabajador(String trabajador) {
 		if (trabajador == null) {
 			setErrorTrabajador("Debes seleccionar un trabajador");
@@ -66,6 +72,7 @@ public class Sesion {
 		}
 	}
 
+	
 	private void setCliente(String cliente) {
 		if (cliente == null) {
 			setErrorCliente("Debes seleccionar un cliente");
@@ -110,18 +117,24 @@ public class Sesion {
 	public Cliente getCliente() {
 		return cliente;
 	}
+	
+	@JsonProperty
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
 	public Trabajador getTrabajador() {
 		return trabajador;
 	}
+	
+	@JsonProperty
 	public void setTrabajador(Trabajador trabajador) {
 		this.trabajador = trabajador;
 	}
 	public Servicio getServicio() {
 		return servicio;
 	}
+	
+	@JsonProperty
 	public void setServicio(Servicio servicio) {
 		this.servicio = servicio;
 	}

@@ -13,6 +13,10 @@ public class Persona {
 		setDni(dni);
 	}
 	
+	public Persona() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public Integer getId() {
 		return id;
 	}

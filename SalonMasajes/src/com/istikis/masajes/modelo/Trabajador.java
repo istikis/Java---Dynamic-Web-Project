@@ -10,4 +10,8 @@ public class Trabajador extends Persona {
 	public Trabajador(String nombre, String apellidos, String dni) {
 		super(null, nombre, apellidos, dni);
 	}
+	
+	public Trabajador() {
+		// TODO Auto-generated constructor stub
+	}
 }
