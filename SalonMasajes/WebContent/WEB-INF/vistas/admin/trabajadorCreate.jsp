@@ -9,7 +9,7 @@
 	<form 
 		action="admin/add_trabajador" 
 		method="post"
-		class="col col-sm-6 offset-sm-1 mt-4">
+		class="col col-sm-6 offset-sm-3 mt-4">
 		
 		<fieldset>
 		
