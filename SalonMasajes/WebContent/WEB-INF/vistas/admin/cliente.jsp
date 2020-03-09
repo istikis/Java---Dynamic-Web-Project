@@ -6,7 +6,7 @@
 
 	<%@ include file="/WEB-INF/vistas/layout/menu_admin.jsp"%>
 		
-	<section  class="container col col-sm-8 mt-4 justify-content-center" id="clientes">
+	<section  class="section-cliente col col-sm-9 offset-2 mt-4" id="clientes">
 
 		<h3 class="mb-4">Tabla Clientes</h3>
 		

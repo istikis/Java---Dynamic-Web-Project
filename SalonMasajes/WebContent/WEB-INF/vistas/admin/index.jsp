@@ -3,12 +3,12 @@
 
 <%@ include file="/WEB-INF/vistas/layout/head.jsp"%>
 
-<div class="div-menu row">
+<div class="div-menu row d-flex justify-content-sm-between">
 
 	<%@ include file="/WEB-INF/vistas/layout/menu_admin.jsp"%>
 	
 	<section 
-		class="container col col-sm-9 mt-4 justify-content-center"
+		class="col col-sm-9 offset-2 mt-4"
 		id="sesion">
 		
 		<h3>Sesiones</h3>

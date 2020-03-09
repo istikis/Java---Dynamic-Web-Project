@@ -25,15 +25,13 @@ public class SesionRest {
 		Cliente cliente;
 		Trabajador trabajador;
 		Servicio servicio;
-//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//		String date = "2020-02-02";
 		
 		sesiones.put(1,new Sesion(
 				1, 
 				cliente = new Cliente(1, "Juan", "Clientero", "79224571C"), 
 				trabajador = new Trabajador(1, "Pedro", "Currante", "79224571T"), 
 				servicio = new Servicio(1, "Exfoliación con cactus", new BigDecimal(50.50)), 
-				new GregorianCalendar(1982, 2-1, 17, 23, 00, 44).getTime(), 
+				new GregorianCalendar(1982, 2-1, 17, 17, 00, 00).getTime(), 
 				"El mejor servicio que he recibido en mi vida. Oh My God! jajaja", 
 				"Para repetir"
 				));

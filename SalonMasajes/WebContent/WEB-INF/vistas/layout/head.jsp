@@ -56,7 +56,7 @@
 			data-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false"
 			aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
+			<span class="navbar-toggler-icon"><i class="burger fas fa-align-justify"></i></span>
 		</button>
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -69,13 +69,14 @@
 					<c:when test="${sessionScope.email != null}">
 						<span class="navbar-text ml-3"> ${sessionScope.email} </span>
 						<ul class="navbar-nav">
-							<li class="nav-item"><a class="nav-link" href="logout">Logout</a>
+							<li class="nav-item"><a class="nav-link" href="logout"> Salir  <i class="fas fa-user"> </i></a>
 							</li>
 						</ul>
 					</c:when>
 					<c:otherwise>
 						<ul class="navbar-nav">
-							<li class="nav-item"><a class="nav-link" href="login">Login</a>
+							<li class="nav-item"><a class="nav-link" href="login">Inicia Sesión <i class="fas fa-user-times">
+							</i></a>
 							</li>
 						</ul>
 					</c:otherwise>

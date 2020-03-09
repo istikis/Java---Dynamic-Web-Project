@@ -4,7 +4,7 @@
 	
 <section class="section-panel col col-sm-2">
 		
-	<ul class="menu-admin navbar-nav mr-auto mt-4">
+	<ul class="menu-admin navbar-nav mt-4">
 		<li class="nav-item">
 				<i class="icono-panel fas fa-tools"></i>		
 		</li>

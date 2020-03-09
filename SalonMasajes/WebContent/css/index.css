@@ -49,6 +49,15 @@ i {
 	color: #2b79c2;
 }
 
+.burger {
+	color: #2b79c2;
+	font-size: 1.5em;
+}
+
+.navbar-text  {
+	color: #2b79c2;
+	margin-right: 5px;
+}
 .masaje h3 {
 	font-size: 1.7em;
 	margin-top: 30px;
@@ -63,12 +72,18 @@ i {
 /*Panel Administración*/
 
 .section-panel{
-	background:#2a2d35;
+	/* background:#2a2d35; */
+	position: fixed;
+	height: 100%;
 }
 
-.div-menu{
-	height: 600px;
+.section-cliente {
+	/* position: absolute ; */
 }
+
+/* .div-menu{
+	height: 600px;
+} */
 
 .menu-admin{
 	height: 100%;
