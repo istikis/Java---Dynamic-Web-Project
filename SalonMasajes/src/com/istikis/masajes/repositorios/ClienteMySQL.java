@@ -20,13 +20,9 @@ import com.istikis.masajes.modelo.Cliente;
 public class ClienteMySQL implements Dao<Cliente>{
 	
 	private static final String SQL_GET_ALL = "CALL clientesGetAll()";
-
 	private static final String SQL_GET_BY_ID = "CALL clientesGetById(?)";
-
-	private static final String SQL_INSERT = "CALL clientesInsert(?,?,?,?)";
-	
+	private static final String SQL_INSERT = "CALL clientesInsert(?,?,?,?)";	
 	private static final String SQL_UPDATE = "CALL clientesUpdate(?,?,?,?)";
-
 	private static final String SQL_DELETE = "CALL clientesDelete(?)";
 	
 	private static String url, usuario, password;
